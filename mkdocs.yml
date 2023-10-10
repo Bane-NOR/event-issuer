@@ -1,0 +1,111 @@
+site_name: Bane NOR - Event Issuer
+site_description: Bane NOR - Event Issuer
+
+theme:
+  name: material
+  logo: img/baneNOR-logo.svg
+  favicon: img/baneNOR-favicon.png # located here: https://www.banenor.no/Resources/Favicon/favicon-32x32.png
+  include_search_page: false
+  search_index_only: true
+  language: en
+  font:
+    text: Roboto
+    code: Roboto Mono
+  # icon:
+    # logo: logo
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep orange
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: light blue
+      accent: deep orange
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+
+  features:
+    - toc.follow
+    - content.code.annotate
+    - content.tooltips
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - navigation.instant
+    - navigation.indexes
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.tracking
+
+plugins:
+  - search:
+      lang: en
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+      #exclude:
+      #  - deployment/allowed-registries.md
+  - glightbox
+  # - minify:
+      # minify_html: true
+
+extra:
+  generator: false
+  search:
+    language: "en"
+
+  # alternate:
+  #   - name: English
+  #     link: /
+  #     lang: en
+
+markdown_extensions:
+  - footnotes
+  - attr_list
+  - def_list
+  - md_in_html
+  - admonition
+  - abbr
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences:
+      preserve_tabs: true
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      linenums_style: pymdownx-inline
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.caret
+  - pymdownx.tilde
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - toc:
+      permalink: true
+
+extra_css:
+  - vendor/custom.css
