@@ -29,3 +29,5 @@ A good way to think of `events` is that they are like messages in a stream proce
 A resource called a `stream` is available for event types. The stream can be read from by one or more consumers.
 
 Consumers can read events and track their position in the stream using a cursor. Consumers can also use a cursor to read from a stream at a particular position. Multiple consumers can read from the same stream, allowing different applications to read the stream simultaneously.
+
+## [Getting Started](./getting-started.md)
