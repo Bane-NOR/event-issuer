@@ -1,21 +1,31 @@
 # Introduction
 
-This is the reference documentation for the Bane NOR Event Issuer API with an overview of all the available methods.
+## What is Event Issuer?
 
-## API versions
+The purpose of the event issuer is to share event data from the event backbone to systems outside of the Bane NOR network.
 
-### Version URL
+```mermaid
+sequenceDiagram
+    participant External System
+    participant Event Issuer
+    participant Event Backbone
 
-This API uses semver, and version names follows the `v{major}` format. You can find the versions currently available by using the version selector at the top of this page.
+    External System->>Event Issuer: Request Event Stream
+    Event Issuer->>Event Backbone: Read events from
+    Event Backbone-->>Event Issuer: Event Data
+    Event Issuer-->>External System: Event Data
+```
 
-### Beta versions
+### Highlights
 
-The beta versions provide a preview of what the stable version will look like in the future. Beta versions contain functionality that is reasonably mature, and highly likely to become a part of the stable API.
+- Abstract event delivery via a <!-- secured --> [RESTful API](https://api-portal.banenor.no/)
+- Enable development of event-driven applications and asynchronous microservices.
+- Efficient low latency event delivery.
 
-Beta versions are indicated by a `beta` suffix after the version.
+## How does Event Issuer work?
 
-### Alpha versions
+A good way to think of `events` is that they are like messages in a stream processing or queuing system, but have a defined structure that can be understood and validated. <!-- Event Issuer supports an event type registry API that lists all the available event types. -->
 
-Alpha versions contain functionality that is new and experimental, and not guaranteed to ever become a part of the stable API. This functionality presents no guarantee of service, so its use is subject to caution.
+A resource called a `stream` is available for event types. The stream can be read from by one or more consumers.
 
-Alpha versions are indicated by an `alpha` suffix after the version name.
+Consumers can read events and track their position in the stream using a cursor. Consumers can also use a cursor to read from a stream at a particular position. Multiple consumers can read from the same stream, allowing different applications to read the stream simultaneously.
