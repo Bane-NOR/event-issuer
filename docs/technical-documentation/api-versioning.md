@@ -4,7 +4,7 @@
 
 ### Version URL
 
-This API uses semver, and version names follows the `v{major}` format. You can find the versions currently available by using the version selector at the top of this page.
+This API uses semver, and version names follows the `v{major}` format. You can find the versions currently available by using the version selector at the top of this page. Read more about semver [here](https://semver.org/)
 
 ### Beta versions
 
