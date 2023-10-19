@@ -32,7 +32,7 @@ Example Payload
 ```json
 {
     "applicationId": "application1",
-    "event": "cloud.operational.event.train-arrived-at-station.v1",
+    "event": "operational.event.train-arrived-at-station.v1",
     "url": "https://test.no/test"
 }
 ```
