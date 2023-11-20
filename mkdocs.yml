@@ -1,6 +1,18 @@
 site_name: Bane NOR - Event Issuer
 site_description: Bane NOR - Event Issuer
 
+nav:
+  - "Introduction":
+    - "Home": index.md
+    - "Use case: TogApp": use-case-tog-app.md
+  - "Technical Documentation":
+    - "API versioning": ./technical-documentation/api-versioning.md
+  - "User guides":
+    - "Overview": ./user-guides/index.md
+    - "Get started with Event Issuer": ./user-guides/get-started-with-event-issuer.md
+    - "Consume events from Event Issuer": ./user-guides/consume-events-from-event-issuer.md
+    - "Subscribe to Event Issuer": ./user-guides/subscribe-to-event-issuer.md
+
 theme:
   name: material
   logo: img/baneNOR-logo.svg
