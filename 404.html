@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Bane NOR - Event Issuer">
+        <meta name="description" content="Event Issuer">
       
       
       
@@ -14,18 +14,18 @@
       
       
       <link rel="icon" href="/img/baneNOR-favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
     
     
       
-        <title>Bane NOR - Event Issuer</title>
+        <title>Event Issuer</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.bd3936ea.min.css">
+      <link rel="stylesheet" href="/assets/stylesheets/main.50c56a3b.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -45,8 +45,6 @@
     
     
       <link rel="stylesheet" href="/css/timeago.css">
-    
-      <link rel="stylesheet" href="/vendor/custom.css">
     
     <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -68,9 +66,6 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
   
     
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
-    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -86,9 +81,9 @@
 
   
 
-<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Bane NOR - Event Issuer" class="md-header__button md-logo" aria-label="Bane NOR - Event Issuer" data-md-component="logo">
+    <a href="/." title="Event Issuer" class="md-header__button md-logo" aria-label="Event Issuer" data-md-component="logo">
       
   <img src="/img/baneNOR-logo.svg" alt="logo">
 
@@ -101,7 +96,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Bane NOR - Event Issuer
+            Event Issuer
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -120,9 +115,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
       </label>
     
@@ -130,15 +125,18 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
       </label>
     
   
 </form>
       
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -189,82 +187,13 @@
     
   </nav>
   
-    
-      
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="/." class="md-tabs__link">
-          
-  
-    
-  
-  Introduction
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="/technical-documentation/api-versioning/" class="md-tabs__link">
-          
-  
-    
-  
-  Technical Documentation
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="/user-guides/" class="md-tabs__link">
-          
-  
-    
-  
-  User guides
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ul>
-  </div>
-</nav>
-    
-  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -278,17 +207,15 @@
                     
 
 
-  
 
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Bane NOR - Event Issuer" class="md-nav__button md-logo" aria-label="Bane NOR - Event Issuer" data-md-component="logo">
+    <a href="/." title="Event Issuer" class="md-nav__button md-logo" aria-label="Event Issuer" data-md-component="logo">
       
   <img src="/img/baneNOR-logo.svg" alt="logo">
 
     </a>
-    Bane NOR - Event Issuer
+    Event Issuer
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -298,69 +225,13 @@
   
   
   
-    
-    
-      
+  
+    <li class="md-nav__item">
+      <a href="/." class="md-nav__link">
         
-          
-        
-      
-        
-      
-    
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="/." class="md-nav__link ">
-              
   
   <span class="md-ellipsis">
     Introduction
-  </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1">
-            <span class="md-nav__icon md-icon"></span>
-            Introduction
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="/use-case-tog-app/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Use case: TogApp
   </span>
   
 
@@ -368,17 +239,10 @@
     </li>
   
 
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
     
       
       
+  
   
   
   
@@ -387,14 +251,17 @@
       
         
       
-    
-    
-    
-    
+        
       
+        
+      
+        
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -402,11 +269,11 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Technical Documentation
+    User Guides
   </span>
   
 
@@ -416,7 +283,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Technical Documentation
+            User Guides
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -425,12 +292,76 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="/technical-documentation/api-versioning/" class="md-nav__link">
+      <a href="/user-guides/tenants/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    API versioning
+    Tenants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/user-guides/subscriptions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Subscriptions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/user-guides/cloudevents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cloudevents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/user-guides/tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracing
   </span>
   
 
@@ -452,27 +383,17 @@
   
   
   
+  
     
     
       
         
-          
-        
-      
-        
-      
-        
-      
-        
       
     
     
     
     
-      
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -480,85 +401,36 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="/user-guides/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
-    User guides
+    API Specifications
   </span>
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            User guides
+            API Specifications
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
               
-            
-              
                 
   
   
   
+  
     <li class="md-nav__item">
-      <a href="/user-guides/get-started-with-event-issuer/" class="md-nav__link">
+      <a href="/apis/v1alpha/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Get started with Event Issuer
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="/user-guides/consume-events-from-event-issuer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Consume events from Event Issuer
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="/user-guides/subscribe-to-event-issuer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Subscribe to Event Issuer
+    v1alpha
   </span>
   
 
@@ -611,6 +483,7 @@
           
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
@@ -640,10 +513,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["toc.follow", "content.code.annotate", "content.tooltips", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "navigation.instant", "navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking"], "search": "/assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "/", "features": ["toc.follow", "content.code.annotate", "content.tooltips", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "navigation.instant", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "/assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.94c44541.min.js"></script>
+      <script src="/assets/javascripts/bundle.7389ff0e.min.js"></script>
       
         <script src="/js/timeago.min.js"></script>
       
