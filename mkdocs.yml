@@ -1,17 +1,16 @@
-site_name: Bane NOR - Event Issuer
-site_description: Bane NOR - Event Issuer
+site_name: Event Issuer
+site_description: Event Issuer
 
 nav:
-  - "Introduction":
-    - "Home": index.md
-    - "Use case: TogApp": use-case-tog-app.md
-  - "Technical Documentation":
-    - "API versioning": ./technical-documentation/api-versioning.md
-  - "User guides":
-    - "Overview": ./user-guides/index.md
-    - "Get started with Event Issuer": ./user-guides/get-started-with-event-issuer.md
-    - "Consume events from Event Issuer": ./user-guides/consume-events-from-event-issuer.md
-    - "Subscribe to Event Issuer": ./user-guides/subscribe-to-event-issuer.md
+  - Introduction: index.md
+  - User Guides:
+    - Tenants: user-guides/tenants.md
+    - Subscriptions: user-guides/subscriptions.md
+    - Cloudevents: user-guides/cloudevents.md
+    - Tracing: user-guides/tracing.md
+  # - Changelog: changelog.md
+  - API Specifications:
+    - v1alpha: apis/v1alpha.md
 
 theme:
   name: material
@@ -53,8 +52,8 @@ theme:
     - navigation.instant
     - navigation.indexes
     - navigation.top
-    - navigation.tabs
-    - navigation.tabs.sticky
+    # - navigation.tabs
+    # - navigation.tabs.sticky
     - navigation.tracking
 
 plugins:
@@ -68,6 +67,7 @@ plugins:
   - glightbox
   # - minify:
       # minify_html: true
+  - swagger-ui-tag
 
 extra:
   generator: false
@@ -119,5 +119,5 @@ markdown_extensions:
   - toc:
       permalink: true
 
-extra_css:
-  - vendor/custom.css
+# extra_css:
+#   - vendor/custom.css

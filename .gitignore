@@ -265,3 +265,5 @@ eng/
 terraform/
 schema/
 docs/staticwebapp.config.json
+
+locals/

@@ -1,106 +1,50 @@
-# Introduction
+# Why Event Issuer exists
 
-## Prerequisite
+The goal of an Event Issuer is to provide an infrastructure to abstract event delivery via a secured RESTful API to external users and systems such as SaaS. This allows external users to maintain service boundaries, and not directly depend on any specific message broker technology. The event issuer will have the possibility for both consuming events from Bane NOR and produce new events.
 
-- [What is event-driven architecture, and what are the benefits?](https://developer.ibm.com/articles/advantages-of-an-event-driven-architecture/)
+![client-integration](img/client-integration.drawio.svg)
 
-## What is Event Issuer?
+## Consumer
 
-Event issuer is a service designed to facilitate the sharing of events from the Bane NOR's Event Backbone to external systems.
+The consumer side of event issuer is based on webhooks. Webhooks are the foundation of modern API development where it is an universal concept that is easily understood by many systems as a way to react to changes.
 
-## Why do we need an Event Issuer?
+One of the main issues tough is contracts, as we should handle many different types of events, it is important to use well defined schemas/contracts that can be used for validation. For this the Event Issuer can be used to get registered schemas for the different events that can be subscribed to.
 
-### Security
+### What are Webhooks?
 
-Due to security concerns, Bane NOR cannot directly expose the Event Backbone to the internet. <br/> Therefore, the Event Issuer serves as a intermediary, ensuring a secure means of delivering event data to external systems.
+Webhooks are how one system notifies another system of a state change.
 
-#### Subscribing to Event type
+In architectural terms, a webhook is a programming language agnostic approach for sending messages between distributed systems. The power of webhooks comes first from being independent of any specific tech stack and second from the notification-based approach. Regardless of your architecture, your systems can receive or broadcast webhooks without being dependent on a specific vendor or even on the same network. Further, downstream systems receiving webhooks don't need to poll a central system for updates or status changes, they can simply listen for an event and process the results.
 
-```mermaid
-flowchart BT
-    subgraph Maskinporten
-        id(Identity Provider)
-    end
+In practical terms, a webhook is simply an HTTP request - usually a POST - with a JSON payload or parameters broadcast from the central system. Much of the modern web is built on this distributed communication pattern.
 
-    subgraph Internet
-        external(External System)--1. Authenticate-->id
-        id-. 2. Receive Token .->external
-    end
+## Producing
 
-    subgraph Bane NOR network
-        external-- 3. Request Event subscription-->apim(API Manager)
-        apim-- 4. Verify Token-->id
-        id-. 5. OK .-apim
-        apim-- 6. Forward request -->eventIssuer([Event Issuer])
-    end
-```
+To produce events to Bane NOR the Event Issuer will have endpoints that can be used to send new events. These events must have predefined data schemas that will be registered into the schema registry. This gives the Event Issuer the ability to validate incoming events that they are in fact following the contract and do no cause any poison pill to our systems.
 
-#### Consuming event
+In Confluent a Poison Pill is defined as:
 
-```mermaid
-flowchart LR
-    subgraph Bane NOR network
-        Service-->eventBackbone(Event Backbone)
-        eventBackbone-->eventIssuer([Event Issuer])
-    end
-    subgraph Internet
-        eventIssuer--Event Data-->external(External System)
-    end
-```
+> “a record that has been produced to a Kafka topic and always fails when consumed, no matter how many times it is attempted.” — Confluent.io
 
-### Standardization
+## Cloudevents
 
-By having a standardized process for external parties to consume Bane NOR events it lowers the threshold for external parties to start consuming events from Bane NOR, regardless if it is a single developer or a big organization.
+> A specification for describing event data in a common way - cloudevents.io
 
-Event Issuer is also built using the HTTP protocol, which is a standardized way of exchanging data.
-Making it easy to integrate and applicable for most use cases.
+[Cloudevents](https://cloudevents.io/) is part of the [Cloud Native Computing Foundation](https://www.cncf.io/projects/cloudevents/) list of projects. This is an specification that tries to standardize the way we describe events and its metadata/headers.
 
-### Benefits
+Event Issuer follows the cloudevents specification and will and uses the [HTTP protocol bindings](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md) for all outgoing events. For producers this will be based on the [JSON Event Format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md).
 
-- Abstract event delivery via a <!-- secured --> [RESTful API](https://api-portal.banenor.no/)
-- Enable the development of event-driven applications and asynchronous microservices.
-- Provides efficient, low latency event delivery.
+For more technical specifications see the cloudevents [user guide section](./user-guides/cloudevents.md)
 
-### Example use cases
+## Security
 
-- [TogApp](use-case-tog-app.md)
+Event Issuer will go into some different phases around the security. Where the initial alpha versions will only work for invited partners. Tough we will work towards for consumer side to be self service for the most part, where producers needs to be controlled before they are allowed to send events.
 
-## How does Event Issuer work?
+It is also important to support different authentication and authorizations not only to Bane NOR but to the external webhooks.
 
-A good way to think of `events` is that they are like messages in a stream processing or queuing system, but have a defined structure that can be understood and validated. <!-- Event Issuer supports an event type registry API that lists all the available event types. -->
+Some ideas of features that will be added around this are:
 
-A resource called a `stream` is available for event types. The stream can be read from by one or more consumers.
-
-Consumers can read events and track their position in the stream using a cursor. Consumers can also use a cursor to read from a stream at a particular position. Multiple consumers can read from the same stream, allowing different applications to read the stream simultaneously.
-
-```mermaid
-sequenceDiagram
-    participant External System
-    participant Event Issuer
-    participant Event Backbone
-
-    External System->>Event Issuer: Request Event Stream
-    Event Issuer->>Event Backbone: Read events from
-    Event Backbone-->>Event Issuer: Event Data
-    Event Issuer-->>External System: Event Data
-```
-
-In short, Event Issuer exposes event streams as Webhooks
-
-!!! note "Read more about Webhooks"
-[Webhooks.fyi - Introduction](https://webhooks.fyi/)
-
-## [Get Started](../user-guides/index.md)
-
-## Roadmap
-
-### Feature: Maskinporten integrasjon
-
-In collaboration with DigDir, Bane NOR is working to develop a simplified application process for accessing Bane NOR's services through Maskinporten.
-
-In the future, it will be possible to use this access to issue a token from Maskinporten, and use it to authenticate in Event Issuer and obtain authorization for specific event types.
-
-<!-- Tooltips -->
-
-*[Webhooks]: Webhooks are automated messages sent from apps when something happens.
-*[Event Backbone]: The communication layer that facilitates events
+- OAuth2, JWTs, and JWKs for authentication and authorization towards the webhook endpoint
+- API Keys that can be configured by the end users if needed to authenticate to their webhook endpoints
+- One Time Verification, seen at other systems like Twitter and Microsoft OneDrive. Use during setup to confirm that the consumer controls the code endpoint
+- Event signing so that consumer can verify that the event has not been tampered with after being sendt from event issuer and gives event integrity
