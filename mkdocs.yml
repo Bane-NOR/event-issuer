@@ -3,8 +3,6 @@ site_description: Event Issuer
 
 nav:
   - Introduction: index.md
-  - Authentication:
-    - Subscription Authentication: authentication/subscription-authentication.md
   - User Guides:
     - Tenants: user-guides/tenants.md
     - Subscriptions: user-guides/subscriptions.md

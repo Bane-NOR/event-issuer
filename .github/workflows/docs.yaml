@@ -37,7 +37,7 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install poetry
           poetry config virtualenvs.in-project true
-
+          
       - name: Install Package Dependencies
         run: poetry install
 

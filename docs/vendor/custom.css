@@ -1,19 +1,19 @@
 .md-grid {
     max-width: initial;
   }
-
+ 
   /* Center images*/
-
+ 
   img.center {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
-
+ 
   .md-footer-column {
     /* We first create a flex layout context */
     display: flex;
-
+ 
     /* Then we define the flow direction
           and if we allow the items to wrap
         * Remember this is the same as:
@@ -21,80 +21,81 @@
         * flex-wrap: wrap;
         */
     flex-flow: column wrap;
-
+ 
     /* Then we define how is distributed the remaining space */
     justify-content: space-around;
-
+ 
     padding: 5px 5px;
   }
-
+ 
   .md-footer-text {
     font-size: 0.7rem;
     padding: 2px 0;
   }
-
+ 
   /* top git source icon */
   .md-header__source {
     width: 2rem;
   }
-
+ 
   /* search box */
   .md-search {
     padding-right: 0.4rem;
   }
-
+ 
   .md-search__inner {
     width: 8rem;
   }
-
+ 
   /* adjust center column */
   .md-main__inner {
     margin-top: 0px;
   }
-
+ 
   /* tabs border */
   .md-typeset .tabbed-set>label {
     border-bottom: 0.1rem solid #4051b5;
   }
-
+ 
   /* headings */
   .md-typeset h1,
   .md-typeset h2 {
     font-weight: 500;
   }
-
+ 
   .md-typeset .admonition {
     font-size: 0.75rem;
   }
-
+ 
  .rfc-must {
    color: #d63923;
  }
-
+ 
  .rfc-should {
    color: #d9a223;
  }
-
+ 
  .rfc-may {
    color: #228a78;
  }
-
+ 
  .rfc-must {
    color: #d63923;
  }
-
+ 
  .rfc-should {
    color: #d9a223;
  }
-
+ 
  .rfc-may {
    color: #228a78;
  }
-
- /* Official Bane NOR colors from website
+ 
+ /* Official Bane NOR colors from website 
  :root > * {
    --md-primary-fg-color:        #1e2869;
    --md-primary-fg-color--light: #1e2869;
    --md-primary-fg-color--dark:  #1b6ec2;
  }
  */
+ 
