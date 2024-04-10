@@ -4,23 +4,22 @@ Some users require authentication and authorization to be able to communicate wi
 Entra Id is the standard OAuth authentication mechanism used in Azure. To be able to use this with Event Issuer subscriptions, we will need to do a server-to-server interaction that runs in the background, without immediate interaction with a user. This is done through an OAuth client-credential flow that grants permissions directly to the application itself by an administrator.
 
 ### Client credentials flow 
-This diagram describes how authentication works between background services.
+This diagram describes how authentication works between background services. For Event-Issuer the flow would look like this. 
 
-For Event-Issuer the flow would look like this
+**This flow assumes that an admin has created an app registration for the subscription given it the correct permissions to the Web API in questions.**
+
+
 ``` mermaid
 sequenceDiagram
-    participant Admin
-    participant App registration
     participant Event Issuer Subscription
     participant EntraId
     participant Web API
 
-    Admin->>App registration: Creates an app registration
-    App registration-->>Admin: App registration is created
-    Admin->>Event Issuer Subscription: Provides the app registration details when creating the subscription
     Event Issuer Subscription->>EntraId: Request token
     EntraId-->>Event Issuer Subscription: Returns token
+    loop Until the consumer has caught up to the offset
     Event Issuer Subscription->>Web API: Posts data to API with token in Authorization header
+    end
     Web API->>Web API: Validates token
     alt Success
     Web API-->>Event Issuer Subscription: 200 ok
