@@ -75,15 +75,41 @@ Maskinporten uses the [JWT Grant mechanisms](https://datatracker.ietf.org/doc/ht
 
 [`reSource`](https://docs.digdir.no/docs/Maskinporten/maskinporten_func_audience_restricted_tokens) is optional if the API endpoints needs it together with [`pid`](https://docs.digdir.no/docs/Maskinporten/maskinporten_func_pid_restricted_tokens.html).
 
-#### Entra Id
+#### Entra ID
 
-Entra Id is the standard OAuth authentication mechanism used in Azure. To be able to use this with Event Issuer subscriptions, we will need to do a server-to-server interaction that runs in the background, without immediate interaction with a user. This is done through an OAuth client-credential flow that grants permissions directly to the application itself by an administrator.
+[Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis) is the standard OAuth authentication mechanism used in Azure. To be able to use this with Event Issuer subscriptions, we will need to do a server-to-server interaction that runs in the background, without immediate interaction with a user. This is done through an OAuth client-credential flow that grants permissions directly to the application itself by an administrator.
+
+Entra Id also uses the [JWT Grant mechanisms](https://datatracker.ietf.org/doc/html/rfc7523) to obtain the `access_token` for requests. These are the configuration options for Entra.
+``` json
+// With client secret
+{
+    "AuthUrl": "https://login.microsoftonline.com/",
+    "TenantId": "[Enter here the tenantID or domain name for your Azure AD tenant]",
+    "ClientId": "[Enter here the ClientId for your application]",
+    "ClientSecret": "string",
+    "scope": "string",
+    "grant_type": "client_credentials"
+}
+```
+
+``` json
+// With certificate or federated credential
+{
+    "AuthUrl": "https://login.microsoftonline.com/",
+    "TenantId": "[Enter here the tenantID or domain name for your Azure AD tenant]",
+    "ClientId": "[Enter here the ClientId for your application]",
+    "client_assertion_type": "The value must be set to urn:ietf:params:oauth:client-assertion-type:jwt-bearer.",
+    "client_assertion": "JSON web token needed to sign with the certificate",
+    "scope": "string",
+    "grant_type": "client_credentials"
+}
+```
 
 ##### Client credentials flow
 
 This diagram describes how authentication works between background services. For Event-Issuer the flow would look like this.
 
-**This flow assumes that an admin has created an app registration for the subscription given it the correct permissions to the Web API in questions.**
+**This flow assumes that an admin has created an app registration for the subscription and given it the correct permissions to the Web API in questions.**
 
 ``` mermaid
 sequenceDiagram
