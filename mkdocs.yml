@@ -6,6 +6,7 @@ nav:
   - User Guides:
     - Tenants: user-guides/tenants.md
     - Subscriptions: user-guides/subscriptions.md
+    - Producing: user-guides/producing.md
     - Cloudevents: user-guides/cloudevents.md
     - Tracing: user-guides/tracing.md
   # - Changelog: changelog.md
