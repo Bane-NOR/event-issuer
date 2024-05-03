@@ -7,29 +7,28 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Event Issuer" name="description"/>
 <link href="../tenants/" rel="prev"/>
-<link href="../cloudevents/" rel="next"/>
+<link href="../producing/" rel="next"/>
 <link href="../../img/baneNOR-favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-9.5.4" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.19" name="generator"/>
 <title>Subscriptions - Event Issuer</title>
-<link href="../../assets/stylesheets/main.50c56a3b.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.66ac8b77.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../css/timeago.css" rel="stylesheet"/>
+<link href="../../vendor/custom.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><style>
-        html.glightbox-open { overflow: initial; height: 100%; }
-        .gslide-title { margin-top: 0px; user-select: text; }
-        .gslide-desc { color: #666; user-select: text; }
-        .gslide-image img { background: white; }
-        
-            .gscrollbar-fixer { padding-right: 15px; }
-            .gdesc-inner { font-size: 0.75rem; }
-            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../assets/javascripts/glightbox.min.js"></script></link></head>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></link></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -174,21 +173,143 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#create-subscription">
-<span class="md-ellipsis">
-      Create Subscription
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#webhook-endpoint">
 <span class="md-ellipsis">
       Webhook endpoint
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#authenticating-subscriptions">
+<span class="md-ellipsis">
+      Authenticating subscriptions
+    </span>
+</a>
+<nav aria-label="Authenticating subscriptions" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#api-key">
+<span class="md-ellipsis">
+      API Key
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-auth">
+<span class="md-ellipsis">
+      Basic Auth
+    </span>
+</a>
+<nav aria-label="Basic Auth" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example">
+<span class="md-ellipsis">
+      Example
+    </span>
+</a>
+</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identity-providers">
+<span class="md-ellipsis">
+      Identity Providers
+    </span>
+</a>
+<nav aria-label="Identity Providers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#maskinporten">
+<span class="md-ellipsis">
+      Maskinporten
+    </span>
+</a>
+<nav aria-label="Maskinporten" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example_1">
+<span class="md-ellipsis">
+      Example
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#entra-id">
+<span class="md-ellipsis">
+      Entra ID
+    </span>
+</a>
+<nav aria-label="Entra ID" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example_2">
+<span class="md-ellipsis">
+      Example
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client-credentials-flow">
+<span class="md-ellipsis">
+      Client credentials flow
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#access-control">
+<span class="md-ellipsis">
+      Access control
+    </span>
+</a>
+<nav aria-label="Access control" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#access-control-lists">
+<span class="md-ellipsis">
+      Access control lists
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#application-permissions">
+<span class="md-ellipsis">
+      Application permissions
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-subscription">
+<span class="md-ellipsis">
+      Create Subscription
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../producing/">
+<span class="md-ellipsis">
+    Producing
+  </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../cloudevents/">
@@ -246,16 +367,131 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#create-subscription">
+<a class="md-nav__link" href="#webhook-endpoint">
 <span class="md-ellipsis">
-      Create Subscription
+      Webhook endpoint
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#webhook-endpoint">
+<a class="md-nav__link" href="#authenticating-subscriptions">
 <span class="md-ellipsis">
-      Webhook endpoint
+      Authenticating subscriptions
+    </span>
+</a>
+<nav aria-label="Authenticating subscriptions" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#api-key">
+<span class="md-ellipsis">
+      API Key
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-auth">
+<span class="md-ellipsis">
+      Basic Auth
+    </span>
+</a>
+<nav aria-label="Basic Auth" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example">
+<span class="md-ellipsis">
+      Example
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identity-providers">
+<span class="md-ellipsis">
+      Identity Providers
+    </span>
+</a>
+<nav aria-label="Identity Providers" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#maskinporten">
+<span class="md-ellipsis">
+      Maskinporten
+    </span>
+</a>
+<nav aria-label="Maskinporten" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example_1">
+<span class="md-ellipsis">
+      Example
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#entra-id">
+<span class="md-ellipsis">
+      Entra ID
+    </span>
+</a>
+<nav aria-label="Entra ID" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example_2">
+<span class="md-ellipsis">
+      Example
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#client-credentials-flow">
+<span class="md-ellipsis">
+      Client credentials flow
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#access-control">
+<span class="md-ellipsis">
+      Access control
+    </span>
+</a>
+<nav aria-label="Access control" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#access-control-lists">
+<span class="md-ellipsis">
+      Access control lists
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#application-permissions">
+<span class="md-ellipsis">
+      Application permissions
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-subscription">
+<span class="md-ellipsis">
+      Create Subscription
     </span>
 </a>
 </li>
@@ -266,39 +502,162 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
+<div class="admonition warning under construction">
+<p class="admonition-title">Warning</p>
+<p>The following section is under construction</p>
+</div>
 <h1 id="subscriptions">Subscriptions<a class="headerlink" href="#subscriptions" title="Permanent link">¶</a></h1>
 <p>Subscriptions is the main mechanism for getting realtime events from the Bane NOR event backbone. The subscription is an reference to an application that wants events to be sendt to an webhook endpoint. The subscriber can configure the authentication towards the endpoint in addition to an API key if that is needed.</p>
-<h2 id="create-subscription">Create Subscription<a class="headerlink" href="#create-subscription" title="Permanent link">¶</a></h2>
-<p>To create an subscription the following command can be used to create an subscription that needs to use an api key and basic authentication.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a>curl -H "Ocp-Apim-Subscription-Key: ApiKey" https://&lt;bane-nor-api-endpoint&gt;/event-issuer/v1alpha/{tenantId}/subscriptions -d '{"applicationId": "my-applicaiotn", "event": "event-name", "url": "https://my-endpoint.com/events}, "apiKey": { "header": "Ocp-Apim-Subscription-Key", "key": "api-key" }, "authentication": { "username": "user1", "password": "my-secure-password" }'
-</code></pre></div>
-<p>If only an api key is needed don't set the <code>authentication</code> and and only the <code>apiKey</code> section.</p>
 <h2 id="webhook-endpoint">Webhook endpoint<a class="headerlink" href="#webhook-endpoint" title="Permanent link">¶</a></h2>
-<p>The endpoint will receive the event payload with additional metadata by using the <a href="../cloudevents/">CloudEvents</a> HTTP binding.</p>
-<p>The following header values will be found as part of the request:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a>ce-specversion: 1.0
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a>ce-type: no.banenor.event-type
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a>ce-id: &lt;unique-id&gt;
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos="4 "></span></a>ce-source: &lt;source identification of the event&gt;
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos="5 "></span></a>ce-time: 2024-01-05T03:56:24Z
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos="6 "></span></a>ce-datacontenttype: application/json
+<p>The endpoint can receive the event payload with additional metadata by using the <a href="../cloudevents/">CloudEvents</a> HTTP binding.</p>
+<p>Cloud events are sent by using the <a href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md">HTTP Protocol Binding</a>. This means that the CloudEvents are part of the HTTP headers.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Bane NOT is workign on stanarising on the cloud event specification wich means that some event types might be missing the cloud event headers.</p>
+</div>
+<h2 id="authenticating-subscriptions">Authenticating subscriptions<a class="headerlink" href="#authenticating-subscriptions" title="Permanent link">¶</a></h2>
+<p>Some users require authentication and authorization to be able to communicate with their APIs. For this purpose different types can be configured for the subscription. The following are supported:</p>
+<ul>
+<li>No authentication</li>
+<li><a href="https://swagger.io/docs/specification/authentication/api-keys/">API Key</a></li>
+<li><a href="https://swagger.io/docs/specification/authentication/basic-authentication/">Basicauth</a></li>
+<li><a href="https://swagger.io/docs/specification/authentication/oauth2/">OAuth 2.0</a></li>
+</ul>
+<p>The idea is that the end users or services can configure the needed information to authenticate towards the webhook endpoint and update the configuration as needed.</p>
+<p>The API Key can be configured with any of the other options in case it is needed as part of your API management setup.</p>
+<h3 id="api-key">API Key<a class="headerlink" href="#api-key" title="Permanent link">¶</a></h3>
+<p>API Key is something that usualy are created when subscribint to certain API or products that can be used both as an token for an API Management system to check if the request should be handeled and in monitoring siuations to check the number of requests are used with example rate limiting.</p>
+<p>Event Issuer supports the use of an API Key configuration wich can be configured with one of the other autentication mechanisms if both are needed.</p>
+<h3 id="basic-auth">Basic Auth<a class="headerlink" href="#basic-auth" title="Permanent link">¶</a></h3>
+<p>Basic authentication with an username and password is supported as an simple mechanism for getting access to an webhook.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="nt">"applicationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application1"</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">    </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cloud.operational.train-arrived-at-station.v1"</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://test.no/test"</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">    </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">        </span><span class="nt">"header"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ocp-Apim-Subscription-Key"</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jnfdi923r8fnaszy12orf98032nrcn7u982"</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">    </span><span class="nt">"authentication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic"</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"systemx"</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">        </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"use-a-secure-password"</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="identity-providers">Identity Providers<a class="headerlink" href="#identity-providers" title="Permanent link">¶</a></h3>
+<p>An <a href="https://en.wikipedia.org/wiki/Identity_provider">identity provider (IdP)</a> is a system that creates, stores, and manages digital identities. The IdP can either directly authenticate the user or can provide authentication services to third-party service providers (apps, websites, or other digital services).</p>
+<p>The following IdPs are supported by to fetch OAuth2.0 tokens:</p>
+<ul>
+<li><a href="https://www.digdir.no/felleslosninger/maskinporten/869">Maskinporten</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/fundamentals/whatis">Entra ID</a></li>
+</ul>
+<p>The following diagram shows the system-context for the communication with and IdP.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../../img/subscriptions/identity-provider.drawio.svg"><img alt="system-context" src="../../img/subscriptions/identity-provider.drawio.svg"/></a></p>
+<h4 id="maskinporten">Maskinporten<a class="headerlink" href="#maskinporten" title="Permanent link">¶</a></h4>
+<p><a href="https://www.digdir.no/felleslosninger/maskinporten/869">Maskinporten</a> is a Norwegian solution to add authorisations between companies that needs to be able to share data between systems or in other words machine-to-machine.</p>
+<h5 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">¶</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="nt">"applicationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application1"</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">    </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cloud.operational.train-arrived-at-station.v1"</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://test.no/test"</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">    </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">        </span><span class="nt">"header"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ocp-Apim-Subscription-Key"</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jnfdi923r8fnaszy12orf98032nrcn7u982"</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">    </span><span class="nt">"authentication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><a href="#__codelineno-1-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maskinporten"</span><span class="p">,</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><a href="#__codelineno-1-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">        </span><span class="nt">"scopes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"company:apix:write"</span><span class="w"> </span><span class="p">]</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><a href="#__codelineno-1-12"><span class="linenos" data-linenos="12 "></span></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>As event issuer is under development this can change and/or some are missing. Event Issuer is also dependent on publishers using cloud events as not all are using them at the moment.</p>
+<p>To be able to use Maskinporten the integration team at Bane NOR needs to be contacted to link the Maskinporten integration to be abele to use the correct scope from the API vendor.</p>
 </div>
+<p>For companies that uses an <a href="https://datatracker.ietf.org/doc/html/rfc8693">token exchange</a> where the maskinporten token needs to be exchagned with an company specific token, contact the integration team with the speicif needs. This will then be added to the backlog and implemented as an tenant specific solution for those needs.</p>
+<h4 id="entra-id">Entra ID<a class="headerlink" href="#entra-id" title="Permanent link">¶</a></h4>
+<p><a href="https://learn.microsoft.com/en-us/entra/fundamentals/whatis">Entra ID</a> is the standard OAuth authentication mechanism used in Azure. To be able to use this with Event Issuer subscriptions, we will need to do a server-to-server interaction that runs in the background, without immediate interaction with a user. This is done through an OAuth client-credential flow that grants permissions directly to the application itself by an administrator.</p>
+<p>Entra Id also uses the <a href="https://datatracker.ietf.org/doc/html/rfc7523">JWT Grant mechanisms</a> to obtain the <code>access_token</code> for requests. These are the configuration options for Entra.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1">// With client secret</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">    </span><span class="nt">"AuthUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://login.microsoftonline.com/"</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos="4 "></span></a><span class="w">    </span><span class="nt">"TenantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Enter here the tenantID or domain name for your Azure AD tenant]"</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos="5 "></span></a><span class="w">    </span><span class="nt">"ClientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Enter here the ClientId for your application]"</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos="6 "></span></a><span class="w">    </span><span class="nt">"ClientSecret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos="7 "></span></a><span class="w">    </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos="8 "></span></a><span class="w">    </span><span class="nt">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos="9 "></span></a><span class="p">}</span>
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1">// With certificate or federated credential</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">    </span><span class="nt">"AuthUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://login.microsoftonline.com/"</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">    </span><span class="nt">"TenantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Enter here the tenantID or domain name for your Azure AD tenant]"</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">    </span><span class="nt">"ClientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Enter here the ClientId for your application]"</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">    </span><span class="nt">"client_assertion_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The value must be set to urn:ietf:params:oauth:client-assertion-type:jwt-bearer."</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><a href="#__codelineno-3-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">    </span><span class="nt">"client_assertion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JSON web token needed to sign with the certificate"</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><a href="#__codelineno-3-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">    </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><a href="#__codelineno-3-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">    </span><span class="nt">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client_credentials"</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><a href="#__codelineno-3-10"><span class="linenos" data-linenos="10 "></span></a><span class="p">}</span>
+</code></pre></div>
+<h5 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">¶</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="nt">"applicationId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application1"</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">    </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cloud.operational.train-arrived-at-station.v1"</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://test.no/test"</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">    </span><span class="nt">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">        </span><span class="nt">"header"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ocp-Apim-Subscription-Key"</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jnfdi923r8fnaszy12orf98032nrcn7u982"</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><a href="#__codelineno-4-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><a href="#__codelineno-4-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">    </span><span class="nt">"authentication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><a href="#__codelineno-4-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"entraid"</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><a href="#__codelineno-4-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">        </span><span class="nt">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d0a3da30-8936-4800-9c23-37c1b86d8a63"</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><a href="#__codelineno-4-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">        </span><span class="nt">"clientSecret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7hzQ3bPSNThb7Cgem+a+w2RqLMKr*LqCSALYco-zQyi4ueUnVo"</span><span class="p">,</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><a href="#__codelineno-4-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">        </span><span class="nt">"scopes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"apix:write"</span><span class="w"> </span><span class="p">]</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><a href="#__codelineno-4-14"><span class="linenos" data-linenos="14 "></span></a><span class="p">}</span>
+</code></pre></div>
+<h5 id="client-credentials-flow">Client credentials flow<a class="headerlink" href="#client-credentials-flow" title="Permanent link">¶</a></h5>
+<p>This diagram describes how authentication works between background services. For Event-Issuer the flow would look like this.</p>
+<p><strong>This flow assumes that an admin has created an app registration for the subscription and given it the correct permissions to the Web API in questions.</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Event Issuer Subscription
+    participant EntraId
+    participant Web API
+
+    Event Issuer Subscription-&gt;&gt;EntraId: Request token
+    EntraId--&gt;&gt;Event Issuer Subscription: Returns token
+    loop Until the consumer has caught up to the offset
+    Event Issuer Subscription-&gt;&gt;Web API: Posts data to API with token in Authorization header
+    end
+    Web API-&gt;&gt;Web API: Validates token
+    alt Success
+    Web API--&gt;&gt;Event Issuer Subscription: 200 ok
+    else Failed
+    Web API --&gt;&gt;Event Issuer Subscription: 401, 403, 404, 501, etc.
+    end</code></pre>
+<h5 id="access-control">Access control<a class="headerlink" href="#access-control" title="Permanent link">¶</a></h5>
+<p>Microsoft provides two options to grant access to applications: <strong>access control lists</strong> and <strong>application permissions</strong>.</p>
+<h6 id="access-control-lists">Access control lists<a class="headerlink" href="#access-control-lists" title="Permanent link">¶</a></h6>
+<p>Access control lists enforce autorization based on a list of applicaiton IDs that it knows and grants a specific level of access to. When the relevant resource receives a token, it decodes it and checks it against the list of authorized clients.</p>
+<h6 id="application-permissions">Application permissions<a class="headerlink" href="#application-permissions" title="Permanent link">¶</a></h6>
+<p>For data owned by organizations, Microsoft recommends using application permissions. To use application roles with your own API, you need to expose the app roles in the API's app registration, then configure the required roles in your client's (the subscription) app registration. The user who creates a subscription will also have to create an app registration in their organization that they provide the neccessary permissions.</p>
+<h2 id="create-subscription">Create Subscription<a class="headerlink" href="#create-subscription" title="Permanent link">¶</a></h2>
+<p>To create an subscription the following command can be used to create an subscription that needs to use an api key and basic authentication.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a>curl -H "Ocp-Apim-Subscription-Key: ApiKey" https://&lt;bane-nor-api-endpoint&gt;/event-issuer/v1alpha/{tenantId}/subscriptions -d '{"applicationId": "my-applicaiotn", "event": "event-name", "url": "https://my-endpoint.com/events}, "apiKey": { "header": "Ocp-Apim-Subscription-Key", "key": "api-key" }, "authentication": { "username": "user1", "password": "my-secure-password" }'
+</code></pre></div>
+<p>If only an api key is needed don't set the <code>authentication</code> and and only the <code>apiKey</code> section.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-02-10T20:03:02+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-02-10</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-05-03T08:43:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-05-03</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-02-10T20:03:02+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-02-10</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-05-03T08:43:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-05-03</span>
 </span>
 </aside>
 </article>
@@ -323,48 +682,12 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "content.code.annotate", "content.tooltips", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "navigation.instant", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="../../assets/javascripts/bundle.7389ff0e.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "content.code.annotate", "content.tooltips", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "navigation.instant", "navigation.indexes", "navigation.top", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
 <script src="../../js/timeago.min.js"></script>
 <script src="../../js/timeago_mkdocs_material.js"></script>
+<script src="https://cdn.redoc.ly/redoc/v2.0.0/bundles/redoc.standalone.js"></script>
 <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script><script>document$.subscribe(() => {
-            window.update_swagger_ui_iframe_height = function (id) {
-                var iFrameID = document.getElementById(id);
-                if (iFrameID) {
-                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
-                    iFrameID.height = full_height;
-                    iFrameID.style.height = full_height;
-                }
-            }
-        
-            let iframe_id_list = []
-            var iframes = document.getElementsByClassName("swagger-ui-iframe");
-            for (var i = 0; i < iframes.length; i++) { 
-                iframe_id_list.push(iframes[i].getAttribute("id"))
-            }
-        
-            let ticking = true;
-            
-            document.addEventListener('scroll', function(e) {
-                if (!ticking) {
-                    window.requestAnimationFrame(()=> {
-                        let half_vh = window.innerHeight/2;
-                        for(var i = 0; i < iframe_id_list.length; i++) {
-                            let element = document.getElementById(iframe_id_list[i])
-                            if(element==null){
-                                return
-                            }
-                            let diff = element.getBoundingClientRect().top
-                            if(element.contentWindow.update_top_val){
-                                element.contentWindow.update_top_val(half_vh - diff)
-                            }
-                        }
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            });
-        
             const dark_scheme_name = "slate"
             
             window.scheme = document.body.getAttribute("data-md-color-scheme")
@@ -375,7 +698,7 @@
                 for (let mutation of mutations) {
                     if (mutation.attributeName === "data-md-color-scheme") {
                         scheme = document.body.getAttribute("data-md-color-scheme")
-                        var iframe_list = document.getElementsByClassName("swagger-ui-iframe")
+                        var iframe_list = document.getElementsByClassName("redoc-iframe")
                         for(var i = 0; i < iframe_list.length; i++) {
                             var ele = iframe_list.item(i);
                             if (ele) {
