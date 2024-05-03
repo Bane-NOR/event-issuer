@@ -15,7 +15,7 @@ mkdocs-glightbox = "^0.3.6"
 mkdocs-git-revision-date-localized-plugin = "^1.2.2"
 mkdocs-markdownextradata-plugin = "^0.2.5"
 mdx-include = "^1.4.2"
-mkdocs-swagger-ui-tag = "^0.6.7"
+mkdocs-redoc-tag = "^0.1.0"
 
 
 [tool.poetry.group.dev.dependencies]

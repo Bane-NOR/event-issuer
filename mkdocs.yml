@@ -6,6 +6,7 @@ nav:
   - User Guides:
     - Tenants: user-guides/tenants.md
     - Subscriptions: user-guides/subscriptions.md
+    - Producing: user-guides/producing.md
     - Cloudevents: user-guides/cloudevents.md
     - Tracing: user-guides/tracing.md
   # - Changelog: changelog.md
@@ -67,7 +68,8 @@ plugins:
   - glightbox
   # - minify:
       # minify_html: true
-  - swagger-ui-tag
+  - redoc-tag:
+      height: 75vh
 
 extra:
   generator: false
@@ -119,5 +121,7 @@ markdown_extensions:
   - toc:
       permalink: true
 
-# extra_css:
-#   - vendor/custom.css
+extra_css:
+  - vendor/custom.css
+extra_javascript:
+  - https://cdn.redoc.ly/redoc/v2.0.0/bundles/redoc.standalone.js

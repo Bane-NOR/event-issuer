@@ -1,2 +1,2 @@
 
-<swagger-ui src="v1alpha.json"/>
+<redoc src="v1alpha.json"/>
