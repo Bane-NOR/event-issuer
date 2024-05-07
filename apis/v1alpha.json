@@ -1,1 +1,1073 @@
-{"openapi":"3.1.0","externalDocs":{"description":"Find more information on the API in the github documentation.","url":"https://bane-nor.github.io/event-issuer/"},"info":{"title":"Event Issuer Alpha","contact":{"name":"Integration Team","email":"integrasjonsteamet@banenor.no"},"version":"0.5.0"},"paths":{"/{tenantId}/subscriptions":{"get":{"summary":"List all subscriptions you have created","operationId":"getAllSubscriptions","tags":["Subscriptions"],"parameters":[{"$ref":"#/components/parameters/tenantId"}],"responses":{"200":{"description":"Ok","content":{"application/json":{"schema":{"type":"array","items":{"allOf":[{"$ref":"#/components/schemas/Subscription"}]}}}}},"400":{"$ref":"#/components/responses/400-bad-request"},"401":{"$ref":"#/components/responses/401-unauthorized"},"403":{"$ref":"#/components/responses/403-forbidden"},"404":{"$ref":"#/components/responses/404-not-found"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}},"post":{"summary":"Create a new subscription","operationId":"createSubscription","tags":["Subscriptions"],"parameters":[{"$ref":"#/components/parameters/tenantId"}],"requestBody":{"description":"A Json Object containing subscription info. Use the correct authentication object as needed or null.","required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/CreateSubscription"}}}},"responses":{"200":{"description":"Ok","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subscription"}}}},"400":{"$ref":"#/components/responses/400-bad-request"},"401":{"$ref":"#/components/responses/401-unauthorized"},"409":{"$ref":"#/components/responses/409-conflict"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}}},"/{tenantId}/subscriptions/{subscriptionId}":{"get":{"summary":"Get information on specific subscription with more details","operationId":"getSpecificSubscription","tags":["Subscriptions"],"parameters":[{"$ref":"#/components/parameters/tenantId"},{"$ref":"#/components/parameters/subscriptionId"}],"responses":{"200":{"description":"Ok","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subscription"}}}},"400":{"$ref":"#/components/responses/400-bad-request"},"401":{"$ref":"#/components/responses/401-unauthorized"},"403":{"$ref":"#/components/responses/403-forbidden"},"404":{"$ref":"#/components/responses/404-not-found"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}},"put":{"summary":"Update a specific subscription with new information","operationId":"updateSpecificSubscription","tags":["Subscriptions"],"parameters":[{"$ref":"#/components/parameters/tenantId"},{"$ref":"#/components/parameters/subscriptionId"}],"requestBody":{"description":"A Json Object containing subscription information.","content":{"application/json":{"schema":{"$ref":"#/components/schemas/UpdateSubscription"}}}},"responses":{"200":{"description":"Ok","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subscription"}}}},"400":{"$ref":"#/components/responses/400-bad-request"},"401":{"$ref":"#/components/responses/401-unauthorized"},"403":{"$ref":"#/components/responses/403-forbidden"},"404":{"$ref":"#/components/responses/404-not-found"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}},"delete":{"summary":"Delete an existing subscription","operationId":"deleteSpecificSubscription","tags":["Subscriptions"],"parameters":[{"$ref":"#/components/parameters/tenantId"},{"$ref":"#/components/parameters/subscriptionId"}],"responses":{"200":{"description":"Ok"},"400":{"$ref":"#/components/responses/400-bad-request"},"401":{"$ref":"#/components/responses/401-unauthorized"},"403":{"$ref":"#/components/responses/403-forbidden"},"404":{"$ref":"#/components/responses/404-not-found"},"422":{"$ref":"#/components/responses/422-unprocessable-content"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}}},"/{tenantId}/produce":{"post":{"summary":"Produce cloud events","operationId":"produce","tags":["Produce"],"parameters":[{"$ref":"#/components/parameters/tenantId"},{"$ref":"#/components/parameters/ce_specversion"},{"$ref":"#/components/parameters/ce_id"},{"$ref":"#/components/parameters/ce_source"},{"$ref":"#/components/parameters/ce_type"},{"$ref":"#/components/parameters/ce_datacontenttype"},{"$ref":"#/components/parameters/ce_dataschema"},{"$ref":"#/components/parameters/ce_subject"},{"$ref":"#/components/parameters/ce_time"}],"requestBody":{"description":"An Cloud event in structured or binary mode. Cloud events header values only needed if in binary mode.","required":true,"content":{"application/cloudevents+json":{"schema":{"$ref":"#/components/schemas/CloudEvents"}},"application/json":{"schema":{"type":"object","description":"An Cloudevent JSON data payload that needs to be produced"}}}},"responses":{"200":{"description":"Ok - Syncronized producer","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProduceEventResult"}}}},"400":{"$ref":"#/components/responses/400-bad-request"},"401":{"$ref":"#/components/responses/401-unauthorized"},"403":{"$ref":"#/components/responses/403-forbidden"},"404":{"$ref":"#/components/responses/404-not-found"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}}},"/{tenantId}/produce/batch":{"post":{"summary":"Produce a batch of cloud events","operationId":"produceBatch","tags":["Produce"],"parameters":[{"$ref":"#/components/parameters/tenantId"}],"requestBody":{"description":"A list of CloudEvents JSON Objects containing metadata and the payload","required":true,"content":{"application/cloudevents-batch+json":{"schema":{"$ref":"#/components/schemas/CloudEventsBatch"}}}},"responses":{"200":{"description":"Ok - Syncronized produsing of batch events","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProduceBatchEventResult"}}}},"400":{"$ref":"#/components/responses/400-bad-request"},"401":{"$ref":"#/components/responses/401-unauthorized"},"403":{"$ref":"#/components/responses/403-forbidden"},"404":{"$ref":"#/components/responses/404-not-found"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}}},"/health":{"get":{"summary":"Retrieves the health of event issuer","operationId":"getStatusHealth","tags":["Health"],"responses":{"200":{"description":"Ok","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Health"}}}},"400":{"$ref":"#/components/responses/400-bad-request"},"500":{"$ref":"#/components/responses/500-internal-server-error"}}}}},"components":{"securitySchemes":{"apiKey":{"type":"apiKey","in":"header","name":"Ocp-Apim-Subscription-Key","description":"All requests must include the 'Ocp-Apim-Subscription-Key' header."}},"parameters":{"tenantId":{"name":"tenantId","in":"path","required":true,"description":"Tenant ID representing the tenant this particular request belongs to.\n","schema":{"type":"string"}},"subscriptionId":{"name":"subscriptionId","in":"path","required":true,"description":"The identification of the subscription to get information from.","schema":{"type":"string"}},"ce_specversion":{"name":"ce-specversion","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nCloudEvents 'specversion' attribute. The version of the CloudEvents\nspecification which the event uses. This enables the interpretation of the context.\n","schema":{"type":"string"}},"ce_id":{"name":"ce-id","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nIdentifies the event. Producers MUST ensure that source + id is unique for each distinct event. If a duplicate event is re-sent (e.g. due to a network error) it MAY have the same id. Consumers MAY assume that Events with identical source and id are duplicates.\n\nExamples:\n  An event counter maintained by the producer\n   A UUID\n   Constraints: REQUIRED\n   MUST be a non-empty string\n   MUST be unique within the scope of the producer\n","schema":{"type":"string"}},"ce_source":{"name":"ce-source","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nIdentifies the context in which an event happened. Often this will include information such as the type of the event source, the organization publishing the event or the process that produced the event. The exact syntax and semantics behind the data encoded in the URI is defined by the event producer.\n\nProducers MUST ensure that source + id is unique for each distinct event.\n\nAn application MAY assign a unique source to each distinct producer, which makes it easy to produce unique IDs since no other producer will have the same source. The application MAY use UUIDs, URNs, DNS authorities or an application-specific scheme to create unique source identifiers.\n\nA source MAY include more than one producer. In that case the producers MUST collaborate to ensure that source + id is unique for each distinct event.\n\nConstraints:\n  REQUIRED\n  MUST be a non-empty URI-reference\n  An absolute URI is RECOMMENDED\n\n  Examples:\n    Internet-wide unique URI with a DNS authority.\n    https://github.com/cloudevents\n    mailto:cncf-wg-serverless @lists.cncf.io\n    Universally-unique URN with a UUID:\n      urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66\n    Application-specific identifiers:\n      /cloudevents/spec/pull/123\n      /sensors/tn-1234567/alerts\n","schema":{"type":"string"}},"ce_type":{"name":"ce-type","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nCloudEvents 'type' attribute. Type of occurrence which has happened.\nOften this attribute is used for routing, observability, policy enforcement, etc.\n","schema":{"type":"string"}},"ce_datacontenttype":{"name":"ce-datacontenttype","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\n Type: String per RFC 2046\n Description: Content type of data value.This attribute enables data to carry any type of content, whereby format and encoding might differ from that of the chosen event format.For example, an event rendered using the JSON envelope format might carry an XML payload in data, and the consumer is informed by this attribute being set to \\\"application/xml\\\". The rules for how data content is rendered for different datacontenttype values are defined in the event format specifications; for example, the JSON event format defines the relationship in section 3.1.\n For some binary mode protocol bindings, this field is directly mapped to the respective protocol's content-type metadata property. Normative rules for the binary mode and the content-type metadata mapping can be found in the respective protocol\n In some event formats the datacontenttype attribute MAY be omitted.For example, if a JSON format event has no datacontenttype attribute, then it is implied that the data is a JSON value conforming to the \\\"application/json\\\" media type. In other words: a JSON-format event with no datacontenttype is exactly equivalent to one with datacontenttype = \\\"application/json\\\".\n\n When translating an event message with no datacontenttype attribute to a different format or protocol binding, the target datacontenttype SHOULD be set explicitly to the implied datacontenttype of the source.\n Constraints:\n   OPTIONAL\n     If present, MUST adhere to the format specified in RFC 2046\n     For Media Type examples see IANA Media Types\n","schema":{"type":"string"}},"ce_dataschema":{"name":"ce-dataschema","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nType: URI\nDescription: Identifies the schema that data adheres to.Incompatible changes to the schema SHOULD be reflected by a different URI. See Versioning of Attributes in the Primer for more information.\nConstraints:\n  OPTIONAL\n    If present, MUST be a non-empty URI\n","schema":{"type":"string"}},"ce_subject":{"name":"ce-subject","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nCloudEvents 'subject' attribute. This describes the subject of the event in the context\nof the event producer (identified by source). In publish-subscribe scenarios, a subscriber\nwill typically subscribe to events emitted by a source, but the source identifier alone\nmight not be sufficient as a qualifier for any specific event if the source context has\ninternal sub-structure.\n","schema":{"type":"string"}},"ce_time":{"name":"ce-time","in":"header","required":true,"description":"**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\n\"CloudEvents 'time' attribute. Timestamp of when the event happened.\"\n","schema":{"type":"string"}}},"schemas":{"Subscription":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the object."},"applicationId":{"type":"string","description":"A unique identifier to help identify the receiving application"},"event":{"type":"string","description":"The subscribed event."},"url":{"type":"string","description":"The URL of the subscription."},"createdAt":{"type":"string","format":"date-time","description":"Time at which the object was created."},"updatedAt":{"type":"string","format":"date-time","description":"Time at which the object was updated."}}},"ProblemDetail":{"type":"object","additionalProperties":true,"minProperties":1,"description":"The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)].","properties":{"type":{"type":"string","description":"A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the problem type. It should provide human-readable documentation for the problem type. When this member is not present, its value is assumed to be \"about:blank\".","format":"uri"},"title":{"type":"string","description":"A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization."},"status":{"type":"integer","description":"The HTTP status code.","minimum":400,"maximum":599},"detail":{"type":"string","description":"A human-readable explanation specific to this occurrence of the problem."},"instance":{"type":"string","description":"A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced."}}},"ApiKey":{"type":"object","properties":{"header":{"type":"string","description":"The name of the header to set on the request towards the webhook endpoint","example":"Ocp-Apim-Subscription-Key"},"key":{"type":"string","description":"The API key that will be set on to the given header","example":"jnfdi923r8fnaszy12orf98032nrcn7u982"}}},"BasicAuth":{"type":"object","properties":{"type":{"type":"string","description":"The type of authentication used.","example":"basic","enum":["Basic","EntraId","Maskinporten"]},"username":{"type":"string","description":"The username used to access the webhook endpoint","example":"systemx"},"password":{"type":"string","description":"The password used for the given username","example":"use-a-secure-password"}}},"EntraId":{"type":"object","properties":{"type":{"type":"string","description":"The type of authentication used.","example":"entraid","enum":["Basic","EntraId","Maskinporten"]},"clientId":{"type":"string","description":"The client id from the app registration in Entra ID","example":"5372d6e1-1adc-4fcd-a98a-26bdb8698901"},"clientSecret":{"type":"string","format":"password","description":"The secret generated for the App registration in Entra ID"},"scopes":{"type":"array","items":{"type":"string"},"description":"Any scopes that need to be retrived with the JWT Bearer token to be sendt to the webhook endpoint"}}},"Maskinporten":{"type":"object","properties":{"type":{"type":"string","description":"The type of authentication used.","example":"maskinporten","enum":["Basic","EntraId","Maskinporten"]},"scopes":{"type":"array","items":{"type":"string"},"description":"Any scopes that need to be retrived with the JWT Bearer token to be sendt to the webhook endpoint"}}},"CreateSubscription":{"type":"object","required":["applicationId","event","url"],"properties":{"applicationId":{"type":"string","description":"A unique identifier to help identify the receiving application","example":"application1"},"event":{"type":"string","description":"The subscribed event.","example":"cloud.operational.train-arrived-at-station.v1"},"url":{"type":"string","pattern":"https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)","description":"The URL that will receive data from the selected event.","example":"https://test.no/test"},"apiKey":{"$ref":"#/components/schemas/ApiKey"},"authentication":{"oneOf":[{"$ref":"#/components/schemas/BasicAuth"},{"$ref":"#/components/schemas/EntraId"},{"$ref":"#/components/schemas/Maskinporten"}]}}},"UpdateSubscription":{"type":"object","properties":{"url":{"type":"string","pattern":"https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)","minimum":1,"description":"The URL of the subscription.","example":"https://test.no/test"}}},"CloudEvents":{"required":["id","source","specversion","type"],"type":"object","properties":{"specversion":{"type":"string","description":"CloudEvents 'specversion' attribute. The version of the CloudEvents\r\nspecification which the event uses. This enables the interpretation of the context."},"id":{"type":"string","description":" Identifies the event. Producers MUST ensure that source + id is unique for each distinct event. If a duplicate event is re-sent (e.g. due to a network error) it MAY have the same id. Consumers MAY assume that Events with identical source and id are duplicates.\r\nExamples:\r\n An event counter maintained by the producer\r\n A UUID\r\nConstraints:\r\n REQUIRED\r\n MUST be a non-empty string\r\n MUST be unique within the scope of the producer"},"source":{"type":"string","description":"Identifies the context in which an event happened. Often this will include information such as the type of the event source, the organization publishing the event or the process that produced the event. The exact syntax and semantics behind the data encoded in the URI is defined by the event producer.\r\n            \r\nProducers MUST ensure that source + id is unique for each distinct event.\r\n            \r\nAn application MAY assign a unique source to each distinct producer, which makes it easy to produce unique IDs since no other producer will have the same source. The application MAY use UUIDs, URNs, DNS authorities or an application-specific scheme to create unique source identifiers.\r\n            \r\nA source MAY include more than one producer. In that case the producers MUST collaborate to ensure that source + id is unique for each distinct event.\r\n            \r\nConstraints:\r\n            \r\n    REQUIRED\r\n    MUST be a non-empty URI-reference\r\n    An absolute URI is RECOMMENDED\r\n            \r\nExamples\r\n            \r\n    Internet-wide unique URI with a DNS authority.\r\n        https://github.com/cloudevents\r\n        mailto:cncf-wg-serverless @lists.cncf.io\r\n    Universally-unique URN with a UUID:\r\n        urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66\r\n    Application-specific identifiers\r\n        /cloudevents/spec/pull/123\r\n        /sensors/tn-1234567/alerts\r\n        1-555-123-4567","format":"uri"},"subject":{"type":"string","description":"CloudEvents 'subject' attribute. This describes the subject of the event in the context\r\nof the event producer (identified by source). In publish-subscribe scenarios, a subscriber\r\nwill typically subscribe to events emitted by a source, but the source identifier alone\r\nmight not be sufficient as a qualifier for any specific event if the source context has\r\ninternal sub-structure."},"type":{"type":"string","description":"CloudEvents 'type' attribute. Type of occurrence which has happened.\r\nOften this attribute is used for routing, observability, policy enforcement, etc."},"time":{"type":"string","description":"CloudEvents 'time' attribute. Timestamp of when the event happened.","format":"date-time"},"datacontenttype":{"type":"string","description":"Type: String per RFC 2046\r\nDescription: Content type of data value.This attribute enables data to carry any type of content, whereby format and encoding might differ from that of the chosen event format.For example, an event rendered using the JSON envelope format might carry an XML payload in data, and the consumer is informed by this attribute being set to \"application/xml\". The rules for how data content is rendered for different datacontenttype values are defined in the event format specifications; for example, the JSON event format defines the relationship in section 3.1.\r\n            \r\nFor some binary mode protocol bindings, this field is directly mapped to the respective protocol's content-type metadata property. Normative rules for the binary mode and the content-type metadata mapping can be found in the respective protocol\r\n            \r\nIn some event formats the datacontenttype attribute MAY be omitted.For example, if a JSON format event has no datacontenttype attribute, then it is implied that the data is a JSON value conforming to the \"application/json\" media type. In other words: a JSON-format event with no datacontenttype is exactly equivalent to one with datacontenttype = \"application/json\".\r\n     \r\n            \r\nWhen translating an event message with no datacontenttype attribute to a different format or protocol binding, the target datacontenttype SHOULD be set explicitly to the implied datacontenttype of the source.\r\n            \r\n            \r\nConstraints:\r\n            \r\n    OPTIONAL\r\n    If present, MUST adhere to the format specified in RFC 2046\r\n            \r\nFor Media Type examples see IANA Media Types"},"dataschema":{"type":"string","description":"Type: URI\r\nDescription: Identifies the schema that data adheres to.Incompatible changes to the schema SHOULD be reflected by a different URI.See Versioning of Attributes in the Primer for more information.\r\nConstraints:\r\n    OPTIONAL\r\n    If present, MUST be a non-empty URI","format":"uri"},"data":{"type":"object","additionalProperties":false,"description":"CloudEvent 'data' content.  The event payload. The payload depends on the type\r\nand the 'schemaurl'. It is encoded into a media format which is specified by the\r\n'contenttype' attribute (e.g. application/json)."}},"additionalProperties":false},"ProduceEventResult":{"type":"object","properties":{"id":{"type":"string","description":"The id of the cloud events id that has been produced"},"time":{"type":"string","format":"date-time","description":"The time given when the event is persisteted to the event backbone"},"persistenceStatus":{"type":"string","enum":["NotPersisted","PossiblyPersisted","Persisted"],"description":"The status of the operation from the delivery result from the event backbone"}}},"CloudEventsBatch":{"type":"array","items":{"$ref":"#/components/schemas/CloudEvents"}},"ProduceBatchEventResult":{"type":"array","items":{"$ref":"#/components/schemas/ProduceEventResult"}},"Health":{"type":"object","required":["status"],"properties":{"status":{"type":"string","example":"ok","enum":["ok","fail","warn"]}}}},"responses":{"400-bad-request":{"description":"Bad request","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"},"example":{"type":"http://example.com","title":"string","status":400,"detail":"string","instance":"string"}}}},"401-unauthorized":{"description":"Unauthorized","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"},"example":{"type":"http://example.com","title":"string","status":401,"detail":"string","instance":"string"}}}},"403-forbidden":{"description":"Forbidden","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"},"example":{"type":"http://example.com","title":"string","status":403,"detail":"string","instance":"string"}}}},"404-not-found":{"description":"Not Found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"},"example":{"type":"http://example.com","title":"string","status":404,"detail":"string","instance":"string"}}}},"500-internal-server-error":{"description":"Internal Server Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"},"example":{"type":"http://example.com","title":"string","status":500,"detail":"string","instance":"string"}}}},"409-conflict":{"description":"Conflict","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"},"example":{"type":"http://example.com","title":"string","status":409,"detail":"string","instance":"string"}}}},"422-unprocessable-content":{"description":"Unprocessable Content","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"},"example":{"type":"http://example.com","title":"string","status":422,"detail":"string","instance":"string"}}}}}},"security":[{"apiKey":[]}],"servers":[{"url":"https://api.banenor.no/event-issuer/v1alpha","description":"Production instance for Bane NOR, this will have the alpha, beta and the latest released version available."},{"url":"https://dev.api.apps.banenor.no/event-issuer/v1alpha","description":"Internal development instance"},{"url":"https://test.api.apps.banenor.no/event-issuer/v1alpha","description":"Internal test instance"}]}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Event Issuer Alpha",
+    "contact": {
+      "name": "Integration Team",
+      "email": "integrasjonsteamet@banenor.no"
+    },
+    "version": "0.6.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.banenor.no/event-issuer/v1alpha",
+      "description": "Production instance for Bane NOR, this will have the alpha, beta and the latest released version available."
+    },
+    {
+      "url": "https://dev.api.apps.banenor.no/event-issuer/v1alpha",
+      "description": "Internal development instance"
+    },
+    {
+      "url": "https://test.api.apps.banenor.no/event-issuer/v1alpha",
+      "description": "Internal test instance"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "externalDocs": {
+    "description": "Find more information on the API in the github documentation.",
+    "url": "https://bane-nor.github.io/event-issuer/"
+  },
+  "paths": {
+    "/{tenantId}/subscriptions": {
+      "get": {
+        "summary": "List all subscriptions you have created",
+        "operationId": "getAllSubscriptions",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Subscription"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-not-found"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new subscription",
+        "operationId": "createSubscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          }
+        ],
+        "requestBody": {
+          "description": "A Json Object containing subscription info. Use the correct authentication object as needed or null.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubscription"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/409-conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      }
+    },
+    "/{tenantId}/subscriptions/{subscriptionId}": {
+      "get": {
+        "summary": "Get information on specific subscription with more details",
+        "operationId": "getSpecificSubscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/subscriptionId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-not-found"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a specific subscription with new information",
+        "operationId": "updateSpecificSubscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/subscriptionId"
+          }
+        ],
+        "requestBody": {
+          "description": "A Json Object containing subscription information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubscription"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-not-found"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an existing subscription",
+        "operationId": "deleteSpecificSubscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/subscriptionId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-not-found"
+          },
+          "422": {
+            "$ref": "#/components/responses/422-unprocessable-content"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      }
+    },
+    "/{tenantId}/subscriptions/{subscriptionId}/start": {
+      "post": {
+        "summary": "Start a subscription",
+        "operationId": "startSubscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/subscriptionId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok - if already started or starting",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted - starting the subscription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/409-conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      }
+    },
+    "/{tenantId}/subscriptions/{subscriptionId}/stop": {
+      "post": {
+        "summary": "Stop a subscription",
+        "operationId": "stopSubscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/subscriptionId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok - if already stopped or stoping",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Accepted - stopping the subscription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/409-conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      }
+    },
+    "/{tenantId}/produce": {
+      "post": {
+        "summary": "Produce cloud events",
+        "operationId": "produce",
+        "tags": [
+          "Produce"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/ce_specversion"
+          },
+          {
+            "$ref": "#/components/parameters/ce_id"
+          },
+          {
+            "$ref": "#/components/parameters/ce_source"
+          },
+          {
+            "$ref": "#/components/parameters/ce_type"
+          },
+          {
+            "$ref": "#/components/parameters/ce_datacontenttype"
+          },
+          {
+            "$ref": "#/components/parameters/ce_dataschema"
+          },
+          {
+            "$ref": "#/components/parameters/ce_subject"
+          },
+          {
+            "$ref": "#/components/parameters/ce_time"
+          }
+        ],
+        "requestBody": {
+          "description": "An Cloud event in structured or binary mode. Cloud events header values only needed if in binary mode.",
+          "required": true,
+          "content": {
+            "application/cloudevents+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloudEvents"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "An Cloudevent JSON data payload that needs to be produced"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok - Syncronized producer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProduceEventResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-not-found"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      }
+    },
+    "/{tenantId}/produce/batch": {
+      "post": {
+        "summary": "Produce a batch of cloud events",
+        "operationId": "produceBatch",
+        "tags": [
+          "Produce"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tenantId"
+          }
+        ],
+        "requestBody": {
+          "description": "A list of CloudEvents JSON Objects containing metadata and the payload",
+          "required": true,
+          "content": {
+            "application/cloudevents-batch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloudEventsBatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok - Syncronized produsing of batch events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProduceBatchEventResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/403-forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-not-found"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Retrieves the health of event issuer",
+        "operationId": "getStatusHealth",
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400-bad-request"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-internal-server-error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Ocp-Apim-Subscription-Key",
+        "description": "All requests must include the 'Ocp-Apim-Subscription-Key' header."
+      }
+    },
+    "parameters": {
+      "tenantId": {
+        "name": "tenantId",
+        "in": "path",
+        "required": true,
+        "description": "Tenant ID representing the tenant this particular request belongs to.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "subscriptionId": {
+        "name": "subscriptionId",
+        "in": "path",
+        "required": true,
+        "description": "The identification of the subscription to get information from.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_specversion": {
+        "name": "ce-specversion",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nCloudEvents 'specversion' attribute. The version of the CloudEvents\nspecification which the event uses. This enables the interpretation of the context.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_id": {
+        "name": "ce-id",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nIdentifies the event. Producers MUST ensure that source + id is unique for each distinct event. If a duplicate event is re-sent (e.g. due to a network error) it MAY have the same id. Consumers MAY assume that Events with identical source and id are duplicates.\n\nExamples:\n  An event counter maintained by the producer\n   A UUID\n   Constraints: REQUIRED\n   MUST be a non-empty string\n   MUST be unique within the scope of the producer\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_source": {
+        "name": "ce-source",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nIdentifies the context in which an event happened. Often this will include information such as the type of the event source, the organization publishing the event or the process that produced the event. The exact syntax and semantics behind the data encoded in the URI is defined by the event producer.\n\nProducers MUST ensure that source + id is unique for each distinct event.\n\nAn application MAY assign a unique source to each distinct producer, which makes it easy to produce unique IDs since no other producer will have the same source. The application MAY use UUIDs, URNs, DNS authorities or an application-specific scheme to create unique source identifiers.\n\nA source MAY include more than one producer. In that case the producers MUST collaborate to ensure that source + id is unique for each distinct event.\n\nConstraints:\n  REQUIRED\n  MUST be a non-empty URI-reference\n  An absolute URI is RECOMMENDED\n\n  Examples:\n    Internet-wide unique URI with a DNS authority.\n    https://github.com/cloudevents\n    mailto:cncf-wg-serverless @lists.cncf.io\n    Universally-unique URN with a UUID:\n      urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66\n    Application-specific identifiers:\n      /cloudevents/spec/pull/123\n      /sensors/tn-1234567/alerts\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_type": {
+        "name": "ce-type",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nCloudEvents 'type' attribute. Type of occurrence which has happened.\nOften this attribute is used for routing, observability, policy enforcement, etc.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_datacontenttype": {
+        "name": "ce-datacontenttype",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\n Type: String per RFC 2046\n Description: Content type of data value.This attribute enables data to carry any type of content, whereby format and encoding might differ from that of the chosen event format.For example, an event rendered using the JSON envelope format might carry an XML payload in data, and the consumer is informed by this attribute being set to \\\"application/xml\\\". The rules for how data content is rendered for different datacontenttype values are defined in the event format specifications; for example, the JSON event format defines the relationship in section 3.1.\n For some binary mode protocol bindings, this field is directly mapped to the respective protocol's content-type metadata property. Normative rules for the binary mode and the content-type metadata mapping can be found in the respective protocol\n In some event formats the datacontenttype attribute MAY be omitted.For example, if a JSON format event has no datacontenttype attribute, then it is implied that the data is a JSON value conforming to the \\\"application/json\\\" media type. In other words: a JSON-format event with no datacontenttype is exactly equivalent to one with datacontenttype = \\\"application/json\\\".\n\n When translating an event message with no datacontenttype attribute to a different format or protocol binding, the target datacontenttype SHOULD be set explicitly to the implied datacontenttype of the source.\n Constraints:\n   OPTIONAL\n     If present, MUST adhere to the format specified in RFC 2046\n     For Media Type examples see IANA Media Types\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_dataschema": {
+        "name": "ce-dataschema",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nType: URI\nDescription: Identifies the schema that data adheres to.Incompatible changes to the schema SHOULD be reflected by a different URI. See Versioning of Attributes in the Primer for more information.\nConstraints:\n  OPTIONAL\n    If present, MUST be a non-empty URI\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_subject": {
+        "name": "ce-subject",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nCloudEvents 'subject' attribute. This describes the subject of the event in the context\nof the event producer (identified by source). In publish-subscribe scenarios, a subscriber\nwill typically subscribe to events emitted by a source, but the source identifier alone\nmight not be sufficient as a qualifier for any specific event if the source context has\ninternal sub-structure.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ce_time": {
+        "name": "ce-time",
+        "in": "header",
+        "required": true,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\n\"CloudEvents 'time' attribute. Timestamp of when the event happened.\"\n",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "Subscription": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the object."
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "A unique identifier to help identify the receiving application"
+          },
+          "event": {
+            "type": "string",
+            "description": "The subscribed event."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the subscription."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the object was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the object was updated."
+          }
+        }
+      },
+      "ProblemDetail": {
+        "type": "object",
+        "additionalProperties": true,
+        "minProperties": 1,
+        "description": "The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)].",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the problem type. It should provide human-readable documentation for the problem type. When this member is not present, its value is assumed to be \"about:blank\".",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string",
+            "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization."
+          },
+          "status": {
+            "type": "integer",
+            "description": "The HTTP status code.",
+            "minimum": 400,
+            "maximum": 599
+          },
+          "detail": {
+            "type": "string",
+            "description": "A human-readable explanation specific to this occurrence of the problem."
+          },
+          "instance": {
+            "type": "string",
+            "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced."
+          }
+        }
+      },
+      "ApiKey": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "string",
+            "description": "The name of the header to set on the request towards the webhook endpoint",
+            "example": "Ocp-Apim-Subscription-Key"
+          },
+          "key": {
+            "type": "string",
+            "description": "The API key that will be set on to the given header",
+            "example": "jnfdi923r8fnaszy12orf98032nrcn7u982"
+          }
+        }
+      },
+      "BasicAuth": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of authentication used.",
+            "example": "basic",
+            "enum": [
+              "Basic",
+              "EntraId",
+              "Maskinporten"
+            ]
+          },
+          "username": {
+            "type": "string",
+            "description": "The username used to access the webhook endpoint",
+            "example": "systemx"
+          },
+          "password": {
+            "type": "string",
+            "description": "The password used for the given username",
+            "example": "use-a-secure-password"
+          }
+        }
+      },
+      "EntraId": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of authentication used.",
+            "example": "entraid",
+            "enum": [
+              "Basic",
+              "EntraId",
+              "Maskinporten"
+            ]
+          },
+          "clientId": {
+            "type": "string",
+            "description": "The client id from the app registration in Entra ID",
+            "example": "5372d6e1-1adc-4fcd-a98a-26bdb8698901"
+          },
+          "clientSecret": {
+            "type": "string",
+            "format": "password",
+            "description": "The secret generated for the App registration in Entra ID"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Any scopes that need to be retrived with the JWT Bearer token to be sendt to the webhook endpoint"
+          }
+        }
+      },
+      "Maskinporten": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of authentication used.",
+            "example": "maskinporten",
+            "enum": [
+              "Basic",
+              "EntraId",
+              "Maskinporten"
+            ]
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Any scopes that need to be retrived with the JWT Bearer token to be sendt to the webhook endpoint"
+          }
+        }
+      },
+      "CreateSubscription": {
+        "type": "object",
+        "required": [
+          "applicationId",
+          "event",
+          "url"
+        ],
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "A unique identifier to help identify the receiving application",
+            "example": "application1"
+          },
+          "event": {
+            "type": "string",
+            "description": "The subscribed event.",
+            "example": "cloud.operational.train-arrived-at-station.v1"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)",
+            "description": "The URL that will receive data from the selected event.",
+            "example": "https://test.no/test"
+          },
+          "apiKey": {
+            "$ref": "#/components/schemas/ApiKey"
+          },
+          "authentication": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BasicAuth"
+              },
+              {
+                "$ref": "#/components/schemas/EntraId"
+              },
+              {
+                "$ref": "#/components/schemas/Maskinporten"
+              }
+            ]
+          }
+        }
+      },
+      "UpdateSubscription": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)",
+            "minimum": 1,
+            "description": "The URL of the subscription.",
+            "example": "https://test.no/test"
+          }
+        }
+      },
+      "CloudEvents": {
+        "required": [
+          "id",
+          "source",
+          "specversion",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "specversion": {
+            "type": "string",
+            "description": "CloudEvents 'specversion' attribute. The version of the CloudEvents\r\nspecification which the event uses. This enables the interpretation of the context."
+          },
+          "id": {
+            "type": "string",
+            "description": " Identifies the event. Producers MUST ensure that source + id is unique for each distinct event. If a duplicate event is re-sent (e.g. due to a network error) it MAY have the same id. Consumers MAY assume that Events with identical source and id are duplicates.\r\nExamples:\r\n An event counter maintained by the producer\r\n A UUID\r\nConstraints:\r\n REQUIRED\r\n MUST be a non-empty string\r\n MUST be unique within the scope of the producer"
+          },
+          "source": {
+            "type": "string",
+            "description": "Identifies the context in which an event happened. Often this will include information such as the type of the event source, the organization publishing the event or the process that produced the event. The exact syntax and semantics behind the data encoded in the URI is defined by the event producer.\r\n            \r\nProducers MUST ensure that source + id is unique for each distinct event.\r\n            \r\nAn application MAY assign a unique source to each distinct producer, which makes it easy to produce unique IDs since no other producer will have the same source. The application MAY use UUIDs, URNs, DNS authorities or an application-specific scheme to create unique source identifiers.\r\n            \r\nA source MAY include more than one producer. In that case the producers MUST collaborate to ensure that source + id is unique for each distinct event.\r\n            \r\nConstraints:\r\n            \r\n    REQUIRED\r\n    MUST be a non-empty URI-reference\r\n    An absolute URI is RECOMMENDED\r\n            \r\nExamples\r\n            \r\n    Internet-wide unique URI with a DNS authority.\r\n        https://github.com/cloudevents\r\n        mailto:cncf-wg-serverless @lists.cncf.io\r\n    Universally-unique URN with a UUID:\r\n        urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66\r\n    Application-specific identifiers\r\n        /cloudevents/spec/pull/123\r\n        /sensors/tn-1234567/alerts\r\n        1-555-123-4567",
+            "format": "uri"
+          },
+          "subject": {
+            "type": "string",
+            "description": "CloudEvents 'subject' attribute. This describes the subject of the event in the context\r\nof the event producer (identified by source). In publish-subscribe scenarios, a subscriber\r\nwill typically subscribe to events emitted by a source, but the source identifier alone\r\nmight not be sufficient as a qualifier for any specific event if the source context has\r\ninternal sub-structure."
+          },
+          "type": {
+            "type": "string",
+            "description": "CloudEvents 'type' attribute. Type of occurrence which has happened.\r\nOften this attribute is used for routing, observability, policy enforcement, etc."
+          },
+          "time": {
+            "type": "string",
+            "description": "CloudEvents 'time' attribute. Timestamp of when the event happened.",
+            "format": "date-time"
+          },
+          "datacontenttype": {
+            "type": "string",
+            "description": "Type: String per RFC 2046\r\nDescription: Content type of data value.This attribute enables data to carry any type of content, whereby format and encoding might differ from that of the chosen event format.For example, an event rendered using the JSON envelope format might carry an XML payload in data, and the consumer is informed by this attribute being set to \"application/xml\". The rules for how data content is rendered for different datacontenttype values are defined in the event format specifications; for example, the JSON event format defines the relationship in section 3.1.\r\n            \r\nFor some binary mode protocol bindings, this field is directly mapped to the respective protocol's content-type metadata property. Normative rules for the binary mode and the content-type metadata mapping can be found in the respective protocol\r\n            \r\nIn some event formats the datacontenttype attribute MAY be omitted.For example, if a JSON format event has no datacontenttype attribute, then it is implied that the data is a JSON value conforming to the \"application/json\" media type. In other words: a JSON-format event with no datacontenttype is exactly equivalent to one with datacontenttype = \"application/json\".\r\n     \r\n            \r\nWhen translating an event message with no datacontenttype attribute to a different format or protocol binding, the target datacontenttype SHOULD be set explicitly to the implied datacontenttype of the source.\r\n            \r\n            \r\nConstraints:\r\n            \r\n    OPTIONAL\r\n    If present, MUST adhere to the format specified in RFC 2046\r\n            \r\nFor Media Type examples see IANA Media Types"
+          },
+          "dataschema": {
+            "type": "string",
+            "description": "Type: URI\r\nDescription: Identifies the schema that data adheres to.Incompatible changes to the schema SHOULD be reflected by a different URI.See Versioning of Attributes in the Primer for more information.\r\nConstraints:\r\n    OPTIONAL\r\n    If present, MUST be a non-empty URI",
+            "format": "uri"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "CloudEvent 'data' content.  The event payload. The payload depends on the type\r\nand the 'schemaurl'. It is encoded into a media format which is specified by the\r\n'contenttype' attribute (e.g. application/json)."
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProduceEventResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the cloud events id that has been produced"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time given when the event is persisteted to the event backbone"
+          },
+          "persistenceStatus": {
+            "type": "string",
+            "enum": [
+              "NotPersisted",
+              "PossiblyPersisted",
+              "Persisted"
+            ],
+            "description": "The status of the operation from the delivery result from the event backbone"
+          }
+        }
+      },
+      "CloudEventsBatch": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CloudEvents"
+        }
+      },
+      "ProduceBatchEventResult": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ProduceEventResult"
+        }
+      },
+      "Health": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ok",
+            "enum": [
+              "ok",
+              "fail",
+              "warn"
+            ]
+          }
+        }
+      }
+    },
+    "responses": {
+      "400-bad-request": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetail"
+            },
+            "example": {
+              "type": "http://example.com",
+              "title": "string",
+              "status": 400,
+              "detail": "string",
+              "instance": "string"
+            }
+          }
+        }
+      },
+      "401-unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetail"
+            },
+            "example": {
+              "type": "http://example.com",
+              "title": "string",
+              "status": 401,
+              "detail": "string",
+              "instance": "string"
+            }
+          }
+        }
+      },
+      "403-forbidden": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetail"
+            },
+            "example": {
+              "type": "http://example.com",
+              "title": "string",
+              "status": 403,
+              "detail": "string",
+              "instance": "string"
+            }
+          }
+        }
+      },
+      "404-not-found": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetail"
+            },
+            "example": {
+              "type": "http://example.com",
+              "title": "string",
+              "status": 404,
+              "detail": "string",
+              "instance": "string"
+            }
+          }
+        }
+      },
+      "500-internal-server-error": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetail"
+            },
+            "example": {
+              "type": "http://example.com",
+              "title": "string",
+              "status": 500,
+              "detail": "string",
+              "instance": "string"
+            }
+          }
+        }
+      },
+      "409-conflict": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetail"
+            },
+            "example": {
+              "type": "http://example.com",
+              "title": "string",
+              "status": 409,
+              "detail": "string",
+              "instance": "string"
+            }
+          }
+        }
+      },
+      "422-unprocessable-content": {
+        "description": "Unprocessable Content",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetail"
+            },
+            "example": {
+              "type": "http://example.com",
+              "title": "string",
+              "status": 422,
+              "detail": "string",
+              "instance": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
