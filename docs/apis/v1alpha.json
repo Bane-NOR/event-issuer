@@ -6,7 +6,7 @@
       "name": "Integration Team",
       "email": "integrasjonsteamet@banenor.no"
     },
-    "version": "0.6.0"
+    "version": "0.7.0"
   },
   "servers": [
     {
@@ -741,12 +741,17 @@
           "type": {
             "type": "string",
             "description": "The type of authentication used.",
-            "example": "entraid",
+            "example": "EntraId",
             "enum": [
               "Basic",
               "EntraId",
               "Maskinporten"
             ]
+          },
+          "url": {
+            "type": "string",
+            "description": "URL for token endpoint.",
+            "example": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
           },
           "clientId": {
             "type": "string",
