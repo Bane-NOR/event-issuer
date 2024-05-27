@@ -371,7 +371,7 @@
     },
     "/{tenantId}/subscriptions/{subscriptionId}/error": {
       "get": {
-        "summary": "List all subscriptions errors recorded",
+        "summary": "List all subscriptions errors recorded from a certain timestamp",
         "operationId": "getAllSubscriptionErrors",
         "tags": [
           "Subscriptions"
