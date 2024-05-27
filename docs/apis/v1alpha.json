@@ -369,68 +369,6 @@
         }
       }
     },
-    "/{tenantId}/subscriptions/{subscriptionId}/error": {
-      "get": {
-        "summary": "List all subscriptions errors recorded from a certain timestamp",
-        "operationId": "getAllSubscriptionErrors",
-        "tags": [
-          "Subscriptions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/tenantId"
-          },
-          {
-            "$ref": "#/components/parameters/subscriptionId"
-          }
-        ],
-        "requestBody": {
-          "description": "A Json Object containing a timestamp to retrieve errors from.",
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetSubscriptionError"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/SubscriptionError"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400-bad-request"
-          },
-          "401": {
-            "$ref": "#/components/responses/401-unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/403-forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/404-not-found"
-          },
-          "500": {
-            "$ref": "#/components/responses/500-internal-server-error"
-          }
-        }
-      }
-    },
     "/{tenantId}/produce": {
       "post": {
         "summary": "Produce cloud events",
@@ -695,6 +633,28 @@
       }
     },
     "schemas": {
+      "SubscriptionError": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When an error was stored."
+          },
+          "traceId": {
+            "type": "string",
+            "description": "The unique identifier for the failed process."
+          },
+          "statusCode": {
+            "type": "string",
+            "description": "The status code of the error that occured in the subscription."
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "The error message stored on the subscription."
+          }
+        }
+      },
       "Subscription": {
         "type": "object",
         "properties": {
@@ -723,6 +683,12 @@
             "type": "string",
             "format": "date-time",
             "description": "Time at which the object was updated."
+          },
+          "errorMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionError"
+            }
           }
         }
       },
@@ -907,39 +873,6 @@
             "minimum": 1,
             "description": "The URL of the subscription.",
             "example": "https://test.no/test"
-          }
-        }
-      },
-      "GetSubscriptionError": {
-        "type": "object",
-        "properties": {
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "description": "A timestamp to retrieve errors from.",
-            "example": "2017-07-21T17:32:28Z"
-          }
-        }
-      },
-      "SubscriptionError": {
-        "type": "object",
-        "properties": {
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "description": "When an error was stored."
-          },
-          "tenantId": {
-            "type": "string",
-            "description": "A unique identifier to help identify the tenant."
-          },
-          "subscriptionId": {
-            "type": "string",
-            "description": "A unique identifier to help identify the subscription."
-          },
-          "errorMessage": {
-            "type": "string",
-            "description": "The error message stored on the subscription."
           }
         }
       },
