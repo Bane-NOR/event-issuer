@@ -6,7 +6,7 @@
       "name": "Integration Team",
       "email": "integrasjonsteamet@banenor.no"
     },
-    "version": "0.7.0"
+    "version": "0.8.0"
   },
   "servers": [
     {
@@ -633,37 +633,6 @@
       }
     },
     "schemas": {
-      "Subscription": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the object."
-          },
-          "applicationId": {
-            "type": "string",
-            "description": "A unique identifier to help identify the receiving application"
-          },
-          "event": {
-            "type": "string",
-            "description": "The subscribed event."
-          },
-          "url": {
-            "type": "string",
-            "description": "The URL of the subscription."
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Time at which the object was created."
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Time at which the object was updated."
-          }
-        }
-      },
       "ProblemDetail": {
         "type": "object",
         "additionalProperties": true,
@@ -692,6 +661,62 @@
           "instance": {
             "type": "string",
             "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced."
+          }
+        }
+      },
+      "SubscriptionError": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProblemDetail"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp at which an error occured."
+          },
+          "traceId": {
+            "type": "string",
+            "description": "The unique identifier for the failed process."
+          }
+        }
+      },
+      "Subscription": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the object."
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "A unique identifier to help identify the receiving application"
+          },
+          "event": {
+            "type": "string",
+            "description": "The subscribed event."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL of the subscription."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the object was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the object was updated."
+          },
+          "errorMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionError"
+            }
           }
         }
       },
