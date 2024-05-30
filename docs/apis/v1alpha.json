@@ -633,25 +633,43 @@
       }
     },
     "schemas": {
-      "SubscriptionError": {
+      "ProblemDetail": {
         "type": "object",
+        "additionalProperties": true,
+        "minProperties": 2,
+        "description": "The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)].",
         "properties": {
+          "type": {
+            "type": "string",
+            "description": "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the problem type. It should provide human-readable documentation for the problem type. When this member is not present, its value is assumed to be \"about:blank\".",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string",
+            "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization."
+          },
+          "status": {
+            "type": "integer",
+            "description": "The HTTP status code.",
+            "minimum": 400,
+            "maximum": 599
+          },
+          "detail": {
+            "type": "string",
+            "description": "A human-readable explanation specific to this occurrence of the problem."
+          },
+          "instance": {
+            "type": "string",
+            "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced."
+          },
           "timestamp": {
             "type": "string",
             "format": "date-time",
-            "description": "When an error was stored."
+            "description": "The timestamp at which an error occured."
           },
           "traceId": {
             "type": "string",
             "description": "The unique identifier for the failed process."
-          },
-          "statusCode": {
-            "type": "string",
-            "description": "The status code of the error that occured in the subscription."
-          },
-          "errorMessage": {
-            "type": "string",
-            "description": "The error message stored on the subscription."
           }
         }
       },
@@ -687,39 +705,8 @@
           "errorMessages": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SubscriptionError"
+              "$ref": "#/components/schemas/ProblemDetail"
             }
-          }
-        }
-      },
-      "ProblemDetail": {
-        "type": "object",
-        "additionalProperties": true,
-        "minProperties": 1,
-        "description": "The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)].",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the problem type. It should provide human-readable documentation for the problem type. When this member is not present, its value is assumed to be \"about:blank\".",
-            "format": "uri"
-          },
-          "title": {
-            "type": "string",
-            "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization."
-          },
-          "status": {
-            "type": "integer",
-            "description": "The HTTP status code.",
-            "minimum": 400,
-            "maximum": 599
-          },
-          "detail": {
-            "type": "string",
-            "description": "A human-readable explanation specific to this occurrence of the problem."
-          },
-          "instance": {
-            "type": "string",
-            "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced."
           }
         }
       },
