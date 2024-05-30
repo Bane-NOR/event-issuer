@@ -636,7 +636,7 @@
       "ProblemDetail": {
         "type": "object",
         "additionalProperties": true,
-        "minProperties": 2,
+        "minProperties": 1,
         "description": "The Problem Details JSON Object [[RFC7807](https://tools.ietf.org/html/rfc7807)].",
         "properties": {
           "type": {
@@ -661,7 +661,17 @@
           "instance": {
             "type": "string",
             "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced."
-          },
+          }
+        }
+      },
+      "SubscriptionError": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProblemDetail"
+          }
+        ],
+        "type": "object",
+        "properties": {
           "timestamp": {
             "type": "string",
             "format": "date-time",
@@ -705,7 +715,7 @@
           "errorMessages": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProblemDetail"
+              "$ref": "#/components/schemas/SubscriptionError"
             }
           }
         }
