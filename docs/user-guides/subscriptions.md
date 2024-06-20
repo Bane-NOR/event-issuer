@@ -42,7 +42,7 @@ Basic authentication with an username and password is supported as an simple mec
 ```json
 {
     "applicationId": "application1",
-    "event": "cloud.operational.train-arrived-at-station.v1",
+    "eventName": "cloud.operational.train-arrived-at-station.v1",
     "url": "https://test.no/test",
     "apiKey": {
         "header": "Ocp-Apim-Subscription-Key",
@@ -78,7 +78,7 @@ The following diagram shows the system-context for the communication with and Id
 ```json
 {
     "applicationId": "application1",
-    "event": "cloud.operational.train-arrived-at-station.v1",
+    "eventName": "cloud.operational.train-arrived-at-station.v1",
     "url": "https://test.no/test",
     "apiKey": {
         "header": "Ocp-Apim-Subscription-Key",
@@ -130,7 +130,7 @@ Entra Id also uses the [JWT Grant mechanisms](https://datatracker.ietf.org/doc/h
 ```json
 {
     "applicationId": "application1",
-    "event": "cloud.operational.train-arrived-at-station.v1",
+    "eventName": "cloud.operational.train-arrived-at-station.v1",
     "url": "https://test.no/test",
     "apiKey": {
         "header": "Ocp-Apim-Subscription-Key",

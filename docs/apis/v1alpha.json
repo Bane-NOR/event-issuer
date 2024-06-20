@@ -644,7 +644,7 @@
             "type": "string",
             "description": "A unique identifier to help identify the receiving application"
           },
-          "event": {
+          "eventName": {
             "type": "string",
             "description": "The subscribed event."
           },
@@ -798,7 +798,7 @@
         "type": "object",
         "required": [
           "applicationId",
-          "event",
+          "eventName",
           "url"
         ],
         "properties": {
