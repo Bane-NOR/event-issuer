@@ -807,7 +807,7 @@
             "description": "A unique identifier to help identify the receiving application",
             "example": "application1"
           },
-          "event": {
+          "eventName": {
             "type": "string",
             "description": "The subscribed event.",
             "example": "cloud.operational.train-arrived-at-station.v1"
