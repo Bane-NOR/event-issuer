@@ -9,6 +9,7 @@ nav:
     - Producing: user-guides/producing.md
     - Cloudevents: user-guides/cloudevents.md
     - Tracing: user-guides/tracing.md
+    - Error Reporting: user-guides/error-reporting.md
   # - Changelog: changelog.md
   - API Specifications:
     - v1alpha: apis/v1alpha.md
