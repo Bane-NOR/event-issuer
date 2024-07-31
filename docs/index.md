@@ -38,7 +38,7 @@ For more technical specifications see the cloudevents [user guide section](./use
 
 ## Security
 
-Event Issuer will go through some different phases regarding security where initial alpha versions will only work for invited partners. We will work towards the consumer side to be self-service for the most part, where producers need to be controlled before they are allowed to send events.
+Event Issuer will go through some different phases regarding security where the initial alpha versions will only work for invited partners. We will work towards the consumer side to be self-service for the most part, where producers need to be controlled before they are allowed to send events.
 
 It is also important to support different authentication and authorizations not only to Bane NOR but also to external webhooks.
 
