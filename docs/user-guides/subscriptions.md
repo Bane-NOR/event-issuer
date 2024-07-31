@@ -141,6 +141,7 @@ Entra Id also uses the [JWT Grant mechanisms](https://datatracker.ietf.org/doc/h
         "clientId": "d0a3da30-8936-4800-9c23-37c1b86d8a63",
         "clientSecret": "7hzQ3bPSNThb7Cgem+a+w2RqLMKr*LqCSALYco-zQyi4ueUnVo",
         "scopes": [ "apix:write" ]
+ }
 }
 ```
 
