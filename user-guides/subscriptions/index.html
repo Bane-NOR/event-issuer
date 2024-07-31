@@ -503,8 +503,8 @@
 <article class="md-content__inner md-typeset">
 <div class="admonition warning under construction">
 <p class="admonition-title">Warning</p>
-</div>
 <p>The following section is under construction</p>
+</div>
 <h1 id="subscriptions">Subscriptions<a class="headerlink" href="#subscriptions" title="Permanent link">¶</a></h1>
 <p>Subscriptions are the main mechanism for getting real-time events from the Bane NOR event backbone. The subscription is a reference to an application that wants events to be sent to a webhook endpoint. The subscriber can configure the authentication towards the endpoint in addition to an API key if that is needed.</p>
 <h2 id="webhook-endpoint">Webhook endpoint<a class="headerlink" href="#webhook-endpoint" title="Permanent link">¶</a></h2>
@@ -512,8 +512,8 @@
 <p>Cloud events are sent by using the <a href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md">HTTP Protocol Binding</a>. This means that the CloudEvents are part of the HTTP headers.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-</div>
 <p>Bane NOR is working on standardizing event messages around the cloud event specification which means that some event types might be missing from the cloud event headers.</p>
+</div>
 <h2 id="authenticating-subscriptions">Authenticating subscriptions<a class="headerlink" href="#authenticating-subscriptions" title="Permanent link">¶</a></h2>
 <p>Some users require authentication and authorization to be able to communicate with their APIs. For this purpose, different types can be configured for the subscription. The following are supported:</p>
 <ul>
@@ -567,7 +567,8 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">"authentication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10"></a><a href="#__codelineno-1-10"><span class="linenos" data-linenos="10 "></span></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maskinporten"</span><span class="p">,</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11"></a><a href="#__codelineno-1-11"><span class="linenos" data-linenos="11 "></span></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">"scopes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"company:apix:write"</span><span class="w"> </span><span class="p">]</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12"></a><a href="#__codelineno-1-12"><span class="linenos" data-linenos="12 "></span></a><span class="p">}</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><a href="#__codelineno-1-12"><span class="linenos" data-linenos="12 "></span></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><a href="#__codelineno-1-13"><span class="linenos" data-linenos="13 "></span></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -613,7 +614,8 @@
 <a id="__codelineno-4-12" name="__codelineno-4-12"></a><a href="#__codelineno-4-12"><span class="linenos" data-linenos="12 "></span></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d0a3da30-8936-4800-9c23-37c1b86d8a63"</span><span class="p">,</span>
 <a id="__codelineno-4-13" name="__codelineno-4-13"></a><a href="#__codelineno-4-13"><span class="linenos" data-linenos="13 "></span></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">"clientSecret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7hzQ3bPSNThb7Cgem+a+w2RqLMKr*LqCSALYco-zQyi4ueUnVo"</span><span class="p">,</span>
 <a id="__codelineno-4-14" name="__codelineno-4-14"></a><a href="#__codelineno-4-14"><span class="linenos" data-linenos="14 "></span></a><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nt">"scopes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"apix:write"</span><span class="w"> </span><span class="p">]</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15"></a><a href="#__codelineno-4-15"><span class="linenos" data-linenos="15 "></span></a><span class="p">}</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><a href="#__codelineno-4-15"><span class="linenos" data-linenos="15 "></span></a><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><a href="#__codelineno-4-16"><span class="linenos" data-linenos="16 "></span></a><span class="p">}</span>
 </code></pre></div>
 <h5 id="client-credentials-flow">Client credentials flow<a class="headerlink" href="#client-credentials-flow" title="Permanent link">¶</a></h5>
 <p>This diagram describes how authentication works between background services. For Event-Issuer the flow would look like this.</p>
@@ -650,13 +652,13 @@
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-07-31T10:04:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-07-31</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-07-31T10:27:54+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-07-31</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-07-31T10:04:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-07-31</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-07-31T10:27:54+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-07-31</span>
 </span>
 </aside>
 </article>
