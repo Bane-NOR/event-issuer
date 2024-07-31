@@ -1,6 +1,6 @@
 # Tracing
 
-Event Issuer is using the [Open Telemetry](https://opentelemetry.io/) and will deliver an tracing value for every outgoing event.
+Event Issuer uses [Open Telemetry](https://opentelemetry.io/) and will deliver a tracing value for every outgoing event.
 
 The standardized way to transmit tracing values is by following the [W3](https://www.w3.org/TR/trace-context/) standard by using:
 
