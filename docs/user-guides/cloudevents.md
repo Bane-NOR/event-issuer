@@ -1,6 +1,6 @@
 # Cloudevents
 
-The [cloudevents specification] (https://cloudevents.io/) is used by Event Issuer both for subscribed events and produced events. The difference is how Event Issuer is using the Cloud Events for events being subscribed to and when producing.
+The [cloudevents specification](https://cloudevents.io/) is used by Event Issuer both for subscribed events and produced events. The difference is how Event Issuer is using the Cloud Events for events being subscribed to and when producing.
 
 ## Subscription
 

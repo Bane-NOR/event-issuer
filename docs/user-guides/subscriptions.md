@@ -1,5 +1,5 @@
 !!! warning under construction
- The following section is under construction
+    The following section is under construction
 
 # Subscriptions
 
@@ -12,7 +12,7 @@ The endpoint can receive the event payload with additional metadata by using the
 Cloud events are sent by using the [HTTP Protocol Binding](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md). This means that the CloudEvents are part of the HTTP headers.
 
 !!! info
-Bane NOR is working on standardizing event messages around the cloud event specification which means that some event types might be missing from the cloud event headers.
+    Bane NOR is working on standardizing event messages around the cloud event specification which means that some event types might be missing from the cloud event headers.
 
 ## Authenticating subscriptions
 
@@ -85,6 +85,7 @@ The following diagram shows the system context for communication with an IdP.
     "authentication": {
         "type": "maskinporten",
         "scopes": [ "company:apix:write" ]
+ }
 }
 ```
 
