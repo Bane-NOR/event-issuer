@@ -630,6 +630,15 @@
         "schema": {
           "type": "string"
         }
+      },
+      "ce-partitionkey": {
+        "name": "ce-partitionkey",
+        "in": "header",
+        "required": false,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\n\"CloudEvents 'partitionkey' attribute. An optional extension field that specifies the partition key for the event.\"\n",
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "schemas": {
@@ -661,7 +670,33 @@
             "type": "string",
             "format": "date-time",
             "description": "Time at which the object was updated."
-          }
+          },
+            "errors": {
+              "type": "array",
+              "description": "Nullable list of errors",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ErrorMessage": {
+                    "type": "string",
+                    "description": "Message describing potential error"
+                  },
+                  "TraceID": {
+                    "type": "string",
+                    "description": "Trace for keeping track of error"
+                  },
+                  "HttpStatusCode": {
+                    "type": "string",
+                    "description": "HTTP status code for the error"
+                  },
+                  "CreatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Time at which the error was created"
+                  }
+                }
+              }
+            }
         }
       },
       "ProblemDetail": {
@@ -896,6 +931,11 @@
             "type": "object",
             "additionalProperties": false,
             "description": "CloudEvent 'data' content.  The event payload. The payload depends on the type\r\nand the 'schemaurl'. It is encoded into a media format which is specified by the\r\n'contenttype' attribute (e.g. application/json)."
+          },
+          "partitionkey": {
+            "type": "string",
+            "additionalProperties": false,
+            "description": "An optional extension field that specifies the partition key for the event."
           }
         },
         "additionalProperties": false
