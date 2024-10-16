@@ -630,6 +630,15 @@
         "schema": {
           "type": "string"
         }
+      },
+      "ce-partitionkey": {
+        "name": "ce-partitionkey",
+        "in": "header",
+        "required": false,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\n\"CloudEvents 'partitionkey' attribute. An optional extension field that specifies the partition key for the event.\"\n",
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "schemas": {
@@ -896,6 +905,11 @@
             "type": "object",
             "additionalProperties": false,
             "description": "CloudEvent 'data' content.  The event payload. The payload depends on the type\r\nand the 'schemaurl'. It is encoded into a media format which is specified by the\r\n'contenttype' attribute (e.g. application/json)."
+          },
+          "partitionkey": {
+            "type": "string",
+            "additionalProperties": false,
+            "description": "An optional extension field that specifies the partition key for the event."
           }
         },
         "additionalProperties": false
