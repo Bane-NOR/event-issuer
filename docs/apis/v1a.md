@@ -4,4 +4,4 @@ hide:
   - toc
 ---
 
-<redoc src="v1alpha.json"/>
+<redoc src="v1.json"/>
