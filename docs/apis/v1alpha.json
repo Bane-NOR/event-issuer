@@ -670,33 +670,7 @@
             "type": "string",
             "format": "date-time",
             "description": "Time at which the object was updated."
-          },
-            "errors": {
-              "type": "array",
-              "description": "Nullable list of errors",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "ErrorMessage": {
-                    "type": "string",
-                    "description": "Message describing potential error"
-                  },
-                  "TraceID": {
-                    "type": "string",
-                    "description": "Trace for keeping track of error"
-                  },
-                  "HttpStatusCode": {
-                    "type": "string",
-                    "description": "HTTP status code for the error"
-                  },
-                  "CreatedAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "Time at which the error was created"
-                  }
-                }
-              }
-            }
+          }
         }
       },
       "ProblemDetail": {
