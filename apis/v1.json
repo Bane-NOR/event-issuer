@@ -1,30 +1,30 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Event Issuer Alpha",
-    "contact": {
-      "name": "Integration Team",
-      "email": "integrasjonsteamet@banenor.no"
-    },
-    "version": "0.7.0"
+    "title": "Event Issuer",
+    "version": "1.0.0",
+    "license": {
+      "name": "BaneNOR",
+      "url": "https://banenor.no"
+    }
   },
   "servers": [
     {
-      "url": "https://api.banenor.no/event-issuer/v1alpha",
+      "url": "https://api.banenor.no/event-issuer",
       "description": "Production instance for Bane NOR, this will have the alpha, beta and the latest released version available."
     },
     {
-      "url": "https://dev.api.apps.banenor.no/event-issuer/v1alpha",
+      "url": "https://dev.api.apps.banenor.no/event-issuer",
       "description": "Internal development instance"
     },
     {
-      "url": "https://test.api.apps.banenor.no/event-issuer/v1alpha",
+      "url": "https://test.api.apps.banenor.no/event-issuer",
       "description": "Internal test instance"
     }
   ],
   "security": [
     {
-      "apiKey": []
+      "subscriptionKey": []
     }
   ],
   "externalDocs": {
@@ -42,6 +42,12 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/tenantId"
+          },
+          {
+            "$ref": "#/components/parameters/pageToken"
+          },
+          {
+            "$ref": "#/components/parameters/maxPerPage"
           }
         ],
         "responses": {
@@ -142,58 +148,6 @@
             "$ref": "#/components/parameters/subscriptionId"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Subscription"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/400-bad-request"
-          },
-          "401": {
-            "$ref": "#/components/responses/401-unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/403-forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/404-not-found"
-          },
-          "500": {
-            "$ref": "#/components/responses/500-internal-server-error"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update a specific subscription with new information",
-        "operationId": "updateSpecificSubscription",
-        "tags": [
-          "Subscriptions"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/tenantId"
-          },
-          {
-            "$ref": "#/components/parameters/subscriptionId"
-          }
-        ],
-        "requestBody": {
-          "description": "A Json Object containing subscription information.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateSubscription"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Ok",
@@ -403,6 +357,9 @@
           },
           {
             "$ref": "#/components/parameters/ce_time"
+          },
+          {
+            "$ref": "#/components/parameters/ce_partitionKey"
           }
         ],
         "requestBody": {
@@ -533,11 +490,11 @@
   },
   "components": {
     "securitySchemes": {
-      "apiKey": {
+      "subscriptionKey": {
         "type": "apiKey",
         "in": "header",
         "name": "Ocp-Apim-Subscription-Key",
-        "description": "All requests must include the 'Ocp-Apim-Subscription-Key' header."
+        "description": "All requests must include the 'Ocp-Apim-Subscription-Key' header containing your subscription."
       }
     },
     "parameters": {
@@ -548,6 +505,24 @@
         "description": "Tenant ID representing the tenant this particular request belongs to.\n",
         "schema": {
           "type": "string"
+        }
+      },
+      "pageToken": {
+        "name": "pageToken",
+        "in": "query",
+        "required": false,
+        "description": "The page token retrieved from an earlier query to continue on the list\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "maxPerPage": {
+        "name": "maxPerPage",
+        "in": "query",
+        "required": false,
+        "description": "The amount of subscription to retrieve at once can be between 1 and 1000.\n",
+        "schema": {
+          "type": "number"
         }
       },
       "subscriptionId": {
@@ -630,6 +605,15 @@
         "schema": {
           "type": "string"
         }
+      },
+      "ce_partitionKey": {
+        "name": "ce-partitionkey",
+        "in": "header",
+        "required": false,
+        "description": "**Only needed if binary mode used for sending cloudevents. For application/json content type**\n\nA partition key for the event, typically for the purposes of defining a causal relationship/grouping between multiple events.\n\nExamples:\n  The ID of the entity that the event is associated with\n",
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "schemas": {
@@ -638,19 +622,23 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier for the object."
+            "description": "Unique identifier for the object.",
+            "example": "7464edaf-c583-43a2-9082-d558379de594"
           },
           "applicationId": {
             "type": "string",
-            "description": "A unique identifier to help identify the receiving application"
+            "description": "A unique identifier to help identify the receiving application",
+            "example": "application1"
           },
           "eventName": {
             "type": "string",
-            "description": "The subscribed event."
+            "description": "The subscribed event.",
+            "example": "cloud.open.operational.train-arrived-at-station.v1"
           },
           "url": {
             "type": "string",
-            "description": "The URL of the subscription."
+            "description": "The URL of the subscription.",
+            "example": "http://example.com"
           },
           "createdAt": {
             "type": "string",
@@ -810,13 +798,13 @@
           "eventName": {
             "type": "string",
             "description": "The subscribed event.",
-            "example": "cloud.operational.train-arrived-at-station.v1"
+            "example": "cloud.open.operational.train-arrived-at-station.v1"
           },
           "url": {
             "type": "string",
             "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)",
             "description": "The URL that will receive data from the selected event.",
-            "example": "https://test.no/test"
+            "example": "http://example.com"
           },
           "apiKey": {
             "$ref": "#/components/schemas/ApiKey"
@@ -836,18 +824,6 @@
           }
         }
       },
-      "UpdateSubscription": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "pattern": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)",
-            "minimum": 1,
-            "description": "The URL of the subscription.",
-            "example": "https://test.no/test"
-          }
-        }
-      },
       "CloudEvents": {
         "required": [
           "id",
@@ -859,24 +835,29 @@
         "properties": {
           "specversion": {
             "type": "string",
-            "description": "CloudEvents 'specversion' attribute. The version of the CloudEvents\r\nspecification which the event uses. This enables the interpretation of the context."
+            "description": "CloudEvents 'specversion' attribute. The version of the CloudEvents\r\nspecification which the event uses. This enables the interpretation of the context.",
+            "example": "1.0"
           },
           "id": {
             "type": "string",
-            "description": " Identifies the event. Producers MUST ensure that source + id is unique for each distinct event. If a duplicate event is re-sent (e.g. due to a network error) it MAY have the same id. Consumers MAY assume that Events with identical source and id are duplicates.\r\nExamples:\r\n An event counter maintained by the producer\r\n A UUID\r\nConstraints:\r\n REQUIRED\r\n MUST be a non-empty string\r\n MUST be unique within the scope of the producer"
+            "description": " Identifies the event. Producers MUST ensure that source + id is unique for each distinct event. If a duplicate event is re-sent (e.g. due to a network error) it MAY have the same id. Consumers MAY assume that Events with identical source and id are duplicates.\r\nExamples:\r\n An event counter maintained by the producer\r\n A UUID\r\nConstraints:\r\n REQUIRED\r\n MUST be a non-empty string\r\n MUST be unique within the scope of the producer",
+            "example": "D234-1234-1234"
           },
           "source": {
             "type": "string",
             "description": "Identifies the context in which an event happened. Often this will include information such as the type of the event source, the organization publishing the event or the process that produced the event. The exact syntax and semantics behind the data encoded in the URI is defined by the event producer.\r\n            \r\nProducers MUST ensure that source + id is unique for each distinct event.\r\n            \r\nAn application MAY assign a unique source to each distinct producer, which makes it easy to produce unique IDs since no other producer will have the same source. The application MAY use UUIDs, URNs, DNS authorities or an application-specific scheme to create unique source identifiers.\r\n            \r\nA source MAY include more than one producer. In that case the producers MUST collaborate to ensure that source + id is unique for each distinct event.\r\n            \r\nConstraints:\r\n            \r\n    REQUIRED\r\n    MUST be a non-empty URI-reference\r\n    An absolute URI is RECOMMENDED\r\n            \r\nExamples\r\n            \r\n    Internet-wide unique URI with a DNS authority.\r\n        https://github.com/cloudevents\r\n        mailto:cncf-wg-serverless @lists.cncf.io\r\n    Universally-unique URN with a UUID:\r\n        urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66\r\n    Application-specific identifiers\r\n        /cloudevents/spec/pull/123\r\n        /sensors/tn-1234567/alerts\r\n        1-555-123-4567",
-            "format": "uri"
+            "format": "uri",
+            "example": "sb://itx.servicebus.windows.net/"
           },
           "subject": {
             "type": "string",
-            "description": "CloudEvents 'subject' attribute. This describes the subject of the event in the context\r\nof the event producer (identified by source). In publish-subscribe scenarios, a subscriber\r\nwill typically subscribe to events emitted by a source, but the source identifier alone\r\nmight not be sufficient as a qualifier for any specific event if the source context has\r\ninternal sub-structure."
+            "description": "CloudEvents 'subject' attribute. This describes the subject of the event in the context\r\nof the event producer (identified by source). In publish-subscribe scenarios, a subscriber\r\nwill typically subscribe to events emitted by a source, but the source identifier alone\r\nmight not be sufficient as a qualifier for any specific event if the source context has\r\ninternal sub-structure.",
+            "example": "TrainLocation"
           },
           "type": {
             "type": "string",
-            "description": "CloudEvents 'type' attribute. Type of occurrence which has happened.\r\nOften this attribute is used for routing, observability, policy enforcement, etc."
+            "description": "CloudEvents 'type' attribute. Type of occurrence which has happened.\r\nOften this attribute is used for routing, observability, policy enforcement, etc.",
+            "example": "cloud.open.operational.train-arrived-at-station.v1"
           },
           "time": {
             "type": "string",
@@ -885,17 +866,27 @@
           },
           "datacontenttype": {
             "type": "string",
-            "description": "Type: String per RFC 2046\r\nDescription: Content type of data value.This attribute enables data to carry any type of content, whereby format and encoding might differ from that of the chosen event format.For example, an event rendered using the JSON envelope format might carry an XML payload in data, and the consumer is informed by this attribute being set to \"application/xml\". The rules for how data content is rendered for different datacontenttype values are defined in the event format specifications; for example, the JSON event format defines the relationship in section 3.1.\r\n            \r\nFor some binary mode protocol bindings, this field is directly mapped to the respective protocol's content-type metadata property. Normative rules for the binary mode and the content-type metadata mapping can be found in the respective protocol\r\n            \r\nIn some event formats the datacontenttype attribute MAY be omitted.For example, if a JSON format event has no datacontenttype attribute, then it is implied that the data is a JSON value conforming to the \"application/json\" media type. In other words: a JSON-format event with no datacontenttype is exactly equivalent to one with datacontenttype = \"application/json\".\r\n     \r\n            \r\nWhen translating an event message with no datacontenttype attribute to a different format or protocol binding, the target datacontenttype SHOULD be set explicitly to the implied datacontenttype of the source.\r\n            \r\n            \r\nConstraints:\r\n            \r\n    OPTIONAL\r\n    If present, MUST adhere to the format specified in RFC 2046\r\n            \r\nFor Media Type examples see IANA Media Types"
+            "description": "Type: String per RFC 2046\r\nDescription: Content type of data value.This attribute enables data to carry any type of content, whereby format and encoding might differ from that of the chosen event format.For example, an event rendered using the JSON envelope format might carry an XML payload in data, and the consumer is informed by this attribute being set to \"application/xml\". The rules for how data content is rendered for different datacontenttype values are defined in the event format specifications; for example, the JSON event format defines the relationship in section 3.1.\r\n            \r\nFor some binary mode protocol bindings, this field is directly mapped to the respective protocol's content-type metadata property. Normative rules for the binary mode and the content-type metadata mapping can be found in the respective protocol\r\n            \r\nIn some event formats the datacontenttype attribute MAY be omitted.For example, if a JSON format event has no datacontenttype attribute, then it is implied that the data is a JSON value conforming to the \"application/json\" media type. In other words: a JSON-format event with no datacontenttype is exactly equivalent to one with datacontenttype = \"application/json\".\r\n     \r\n            \r\nWhen translating an event message with no datacontenttype attribute to a different format or protocol binding, the target datacontenttype SHOULD be set explicitly to the implied datacontenttype of the source.\r\n            \r\n            \r\nConstraints:\r\n            \r\n    OPTIONAL\r\n    If present, MUST adhere to the format specified in RFC 2046\r\n            \r\nFor Media Type examples see IANA Media Types",
+            "example": "application/cloudevents"
           },
           "dataschema": {
             "type": "string",
             "description": "Type: URI\r\nDescription: Identifies the schema that data adheres to.Incompatible changes to the schema SHOULD be reflected by a different URI.See Versioning of Attributes in the Primer for more information.\r\nConstraints:\r\n    OPTIONAL\r\n    If present, MUST be a non-empty URI",
             "format": "uri"
           },
+          "partitionkey": {
+            "type": "string",
+            "description": "CloudEvents 'partitionKey' attribute. Allows you to set a specific message key when producing cloud events towards the Integration Backbone (Confluent Kafka). Defaults to null if not set."
+          },
           "data": {
             "type": "object",
             "additionalProperties": false,
-            "description": "CloudEvent 'data' content.  The event payload. The payload depends on the type\r\nand the 'schemaurl'. It is encoded into a media format which is specified by the\r\n'contenttype' attribute (e.g. application/json)."
+            "description": "CloudEvent 'data' content.  The event payload. The payload depends on the type\r\nand the 'schemaurl'. It is encoded into a media format which is specified by the\r\n'contenttype' attribute (e.g. application/json).",
+            "example": {
+              "TrainSpeed": "50",
+              "TrainLatitude": "59.91",
+              "TrainLongitude": "10.765"
+            }
           }
         },
         "additionalProperties": false
@@ -910,7 +901,7 @@
           "time": {
             "type": "string",
             "format": "date-time",
-            "description": "The time given when the event is persisteted to the event backbone"
+            "description": "The time given when the event is persisted to the event backbone"
           },
           "persistenceStatus": {
             "type": "string",
