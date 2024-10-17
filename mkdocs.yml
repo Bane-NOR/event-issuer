@@ -11,7 +11,7 @@ nav:
     - Tracing: user-guides/tracing.md
   # - Changelog: changelog.md
   - API Specifications:
-    - v1alpha: apis/v1.md
+    - v1: apis/v1.md
 
 theme:
   name: material
