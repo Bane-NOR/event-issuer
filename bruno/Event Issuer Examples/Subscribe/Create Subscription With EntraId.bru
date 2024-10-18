@@ -21,9 +21,12 @@ body:json {
     "url": "https://test.api.apps.banenor.no/event-issuer-tester/events",
     "apiKey": null,
     "authentication": {
-      "type": "Maskinporten",
-      "scopes": [ "toll:movement/railarrival" ]
+      "type": "EntraId",
+      "url": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+      "clientId": "5372d6e1-1adc-4fcd-a98a-26bdb8698901",
+      "clientSecret": "mySecret",
+      "scopes": ["banenor:trains/trainarival"]
     }
   }
-
+  
 }

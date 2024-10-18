@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{hostUrl}}/itx/produce/batch
+  url: {{hostUrl}}/{{TenantName}}/produce/batch
   body: json
   auth: none
 }
@@ -19,27 +19,27 @@ body:json {
   [
     {
       "specversion" : "1.0",
-      "type" : "cloud.internal.event-issuer.test.v1",
+      "type" : "cloud.open.event-issuer.test-events.v1",
       "source" : "/mycontext",
       "subject": null,
       "id" : "12346789",
       "time" : "2018-04-05T17:31:00Z",
-      "partitionkey": "test",
+      "partitionkey": "{{partitionKey}}",
       "data" : { "value": "I'm just a string" }
     },
     {
         "specversion" : "1.0",
-        "type" : "cloud.internal.event-issuer.test.v1",
+        "type" : "cloud.open.event-issuer.test-events.v1",
         "source" : "/mycontext",
         "subject": null,
         "id" : "789",
         "time" : "2018-04-05T17:31:00Z",
-        "partitionkey": "test",
+        "partitionkey": "{{partitionKey}}",
         "data" : { "value": "I'm just a string" }
     },
     {
         "specversion" : "1.0",
-        "type" : "cloud.internal.event-issuer.test.v1",
+        "type" : "cloud.open.event-issuer.test-events.v1",
         "source" : "/mycontext",
         "subject": null,
         "id" : "456",
@@ -48,7 +48,7 @@ body:json {
     },
     {
         "specversion" : "1.0",
-        "type" : "cloud.internal.event-issuer.test.v1",
+        "type" : "cloud.open.event-issuer.test-events.v1",
         "source" : "/mycontext",
         "subject": null,
         "id" : "456",
@@ -57,7 +57,7 @@ body:json {
     },
     {
         "specversion" : "1.0",
-        "type" : "cloud.internal.event-issuer.test.v1",
+        "type" : "cloud.open.event-issuer.test-events.v1",
         "source" : "/mycontext",
         "subject": null,
         "id" : "456",
@@ -66,7 +66,7 @@ body:json {
     },
     {
         "specversion" : "1.0",
-        "type" : "cloud.internal.event-issuer.test.v1",
+        "type" : "cloud.open.event-issuer.test-events.v1",
         "source" : "/mycontext",
         "subject": null,
         "id" : "456",
@@ -75,7 +75,7 @@ body:json {
     },
     {
         "specversion" : "1.0",
-        "type" : "cloud.internal.event-issuer.test.v1",
+        "type" : "cloud.open.event-issuer.test-events.v1",
         "source" : "/mycontext",
         "subject": null,
         "id" : "456",
@@ -83,4 +83,8 @@ body:json {
         "data" : { "value": "I'm just a string" }
     }
   ]
+}
+
+vars:pre-request {
+  ~partitionKey: testkey
 }

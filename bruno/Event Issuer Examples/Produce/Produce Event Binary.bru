@@ -5,14 +5,14 @@ meta {
 }
 
 post {
-  url: {{hostUrl}}/itx/produce
+  url: {{hostUrl}}/{{TenantName}}/produce
   body: json
   auth: none
 }
 
 headers {
   ce-specversion: 1.0
-  ce-type: cloud.open.event-issuer.test.v1
+  ce-type: cloud.open.event-issuer.test-events.v1
   ce-source: mycontext
   ce-id: D234-1234-1234
   ce-time: 2018-04-05T17:31:00Z

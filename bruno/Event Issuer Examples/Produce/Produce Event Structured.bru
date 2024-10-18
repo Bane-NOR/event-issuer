@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{hostUrl}}/itx/produce
+  url: {{hostUrl}}/{{TenantName}}/produce
   body: json
   auth: none
 }
@@ -18,7 +18,7 @@ headers {
 body:json {
   {
     "specversion" : "1.0",
-    "type" : "cloud.event-issuer.test.v1",
+    "type" : "cloud.open.event-issuer.test-events.v1",
     "source" : "/mycontext",
     "subject": null,
     "id" : "D234-1234-1234",
@@ -26,5 +26,5 @@ body:json {
     "partitionkey" : "optional-partition-key",
     "data" : { "value": "I'm just a string" }
   }
-
+  
 }
