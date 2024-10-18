@@ -21,9 +21,10 @@ body:json {
     "url": "https://test.api.apps.banenor.no/event-issuer-tester/events",
     "apiKey": null,
     "authentication": {
-      "type": "Maskinporten",
-      "scopes": [ "toll:movement/railarrival" ]
+      "type": "BasicAuth",
+      "username": "myUsername",
+      "password": "myPassword"
     }
   }
-
+  
 }
