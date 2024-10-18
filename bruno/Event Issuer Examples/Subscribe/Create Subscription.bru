@@ -1,0 +1,23 @@
+meta {
+  name: Create Subscription
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{hostUrl}}/{{TenantName}}/subscriptions
+  body: json
+  auth: none
+}
+
+headers {
+  Ocp-Apim-Subscription-Key: {{apiKey}}
+}
+
+body:json {
+  {
+    "applicationId": "test",
+    "eventName": "cloud.open.event-issuer.test-events.v1",
+    "url": "https://test.api.apps.banenor.no/event-issuer-tester/events"
+  }
+}

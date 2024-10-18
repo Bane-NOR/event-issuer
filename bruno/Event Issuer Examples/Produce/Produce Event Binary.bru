@@ -1,0 +1,28 @@
+meta {
+  name: Produce Event Binary
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{hostUrl}}/{{TenantName}}/produce
+  body: json
+  auth: none
+}
+
+headers {
+  ce-specversion: 1.0
+  ce-type: cloud.open.event-issuer.test-events.v1
+  ce-source: sb://banenor.servicebus.windows.net/
+  ce-id: D234-1234-1234
+  ce-time: 2018-04-05T17:31:00Z
+  ce-partitionkey: optional-partition-key
+  Ocp-Apim-Subscription-Key: {{apiKey}}
+  ce-subject: TrainLocation
+}
+
+body:json {
+  {
+    "value": "Test data"
+  }
+}

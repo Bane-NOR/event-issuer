@@ -1,0 +1,19 @@
+meta {
+  name: GetSubscription
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{hostUrl}}/{{TenantName}}/subscriptions/{{SubscriptionId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Ocp-Apim-Subscription-Key: {{apiKey}}
+}
+
+vars:pre-request {
+  subscriptionId: 01234-5678-9101
+}

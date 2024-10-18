@@ -1,0 +1,32 @@
+meta {
+  name: Create Subscription With EntraId
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{hostUrl}}/{{TenantName}}/subscriptions
+  body: json
+  auth: none
+}
+
+headers {
+  Ocp-Apim-Subscription-Key: {{apiKey}}
+}
+
+body:json {
+  {
+    "applicationId": "test",
+    "eventName": "cloud.open.event-issuer.test-events.v1",
+    "url": "https://test.api.apps.banenor.no/event-issuer-tester/events",
+    "apiKey": null,
+    "authentication": {
+      "type": "EntraId",
+      "url": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+      "clientId": "5372d6e1-1adc-4fcd-a98a-26bdb8698901",
+      "clientSecret": "mySecret",
+      "scopes": ["banenor:trains/trainarival"]
+    }
+  }
+  
+}
