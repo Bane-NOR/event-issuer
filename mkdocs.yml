@@ -11,6 +11,8 @@ nav:
     - Producing: user-guides/producing.md
     - Cloudevents: user-guides/cloudevents.md
     - Tracing: user-guides/tracing.md
+    # - Debugging: user-guides/debugging.md
+    - FAQ: user-guides/faq.md
   # - Changelog: changelog.md
   - API Specifications:
     - v1: apis/v1.md

@@ -1,8 +1,5 @@
-
-!!! warning under construction
-    The following section is under construction
-
 # Producing
+(For concrete examples, check out our [bruno collection](https://github.com/Bane-NOR/event-issuer/tree/main/bruno))
 
 Event Issuer can be used to produce new events into Bane NOR. This is not openly available and an agreement with Bane NOR is needed to be able to produce data. The correct access rights for producing will be given on an agreement basis.
 

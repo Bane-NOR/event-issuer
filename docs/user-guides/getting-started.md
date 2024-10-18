@@ -15,7 +15,7 @@ After permission has been given to use the Event Issuer service, the next step i
 - For the staging environment: [APIM Portal Staging](https://test.api-portal.apps.banenor.no )
 - For the production environment: [APIM Portal Production](https://api-portal.banenor.no/)
 
-The staging environment can be used to consume data from dev topics. The reason for this is that our dev instance will not necessarily be stable for external use and as such we will serve both with the staging event issuer for those that need to work with their own development.
+The staging environment can be used to consume data from dev topics. The reason for this is that our dev instance will not necessarily be stable for public use and as such we will serve both dev and staging with the staging event issuer for those that need to work with their own development.
 
 Once logged in to the developer portal for the first time, you will be visible with your e-mail address and the integration team will be able to provide you with subscription keys.
 
