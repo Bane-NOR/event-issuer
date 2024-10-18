@@ -3,7 +3,9 @@ site_description: Event Issuer
 
 nav:
   - Introduction: index.md
+  - Terminology: terminology.md
   - User Guides:
+    - Getting Started: user-guides/getting-started.md
     - Tenants: user-guides/tenants.md
     - Subscriptions: user-guides/subscriptions.md
     - Producing: user-guides/producing.md
