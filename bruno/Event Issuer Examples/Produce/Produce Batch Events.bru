@@ -1,0 +1,90 @@
+meta {
+  name: Produce Batch Events
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{hostUrl}}/{{TenantName}}/produce/batch
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/cloudevents-batch+json
+  Ocp-Apim-Subscription-Key: {{apiKey}}
+}
+
+body:json {
+  [
+    {
+      "specversion" : "1.0",
+      "type" : "cloud.open.event-issuer.test-events.v1",
+      "source" : "sb://banenor.servicebus.windows.net/",
+      "subject": null,
+      "id" : "12346789",
+      "time" : "2018-04-05T17:31:00Z",
+      "partitionkey": "{{partitionKey}}",
+      "data" : { "value": "I'm just a string" }
+    },
+    {
+      "specversion" : "1.0",
+      "type" : "cloud.open.event-issuer.test-events.v1",
+      "source" : "sb://banenor.servicebus.windows.net/",
+      "subject": null,
+      "id" : "789",
+      "time" : "2018-04-05T17:31:00Z",
+      "partitionkey": "{{partitionKey}}",
+      "data" : { "value": "I'm just a string" }
+    },
+    {
+      "specversion" : "1.0",
+      "type" : "cloud.open.event-issuer.test-events.v1",
+      "source" : "sb://banenor.servicebus.windows.net/",
+      "subject": null,
+      "id" : "456",
+      "time" : "2018-04-05T17:31:00Z",
+      "data" : { "value": "I'm just a string" }
+    },
+    {
+      "specversion" : "1.0",
+      "type" : "cloud.open.event-issuer.test-events.v1",
+      "source" : "sb://banenor.servicebus.windows.net/",
+      "subject": null,
+      "id" : "456",
+      "time" : "2018-04-05T17:31:00Z",
+      "data" : { "value": "I'm just a string" }
+    },
+    {
+      "specversion" : "1.0",
+      "type" : "cloud.open.event-issuer.test-events.v1",
+      "source" : "sb://banenor.servicebus.windows.net/",
+      "subject": null,
+      "id" : "456",
+      "time" : "2018-04-05T17:31:00Z",
+      "data" : { "value": "I'm just a string" }
+    },
+    {
+      "specversion" : "1.0",
+      "type" : "cloud.open.event-issuer.test-events.v1",
+      "source" : "sb://banenor.servicebus.windows.net/",
+      "subject": null,
+      "id" : "456",
+      "time" : "2018-04-05T17:31:00Z",
+      "data" : { "value": "I'm just a string" }
+    },
+    {
+      "specversion" : "1.0",
+      "type" : "cloud.open.event-issuer.test-events.v1",
+      "source" : "sb://banenor.servicebus.windows.net/",
+      "subject": null,
+      "id" : "456",
+      "time" : "2018-04-05T17:31:00Z",
+      "data" : { "value": "I'm just a string" }
+    }
+  ]
+}
+
+vars:pre-request {
+  ~partitionKey: testkey
+}

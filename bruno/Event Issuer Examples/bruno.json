@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Event Issuer Examples",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,7 +1,5 @@
-!!! warning under construction
-    The following section is under construction
-
 # Subscriptions
+(For concrete examples, check out our [bruno collection](https://github.com/Bane-NOR/event-issuer/tree/main/bruno))
 
 Subscriptions are the main mechanism for getting real-time events from the Bane NOR event backbone. The subscription is a reference to an application that wants events to be sent to a webhook endpoint. The subscriber can configure the authentication towards the endpoint in addition to an API key if that is needed.
 
@@ -40,14 +38,14 @@ Basic authentication with a username and password is supported as a simple mecha
 ```json
 {
     "applicationId": "application1",
-    "eventName": "cloud.operational.train-arrived-at-station.v1",
+    "eventName": "cloud.open.operational.train-arrived-at-station.v1",
     "url": "https://test.no/test",
     "apiKey": {
         "header": "Ocp-Apim-Subscription-Key",
         "key": "jnfdi923r8fnaszy12orf98032nrcn7u982"
  },
     "authentication": {
-        "type": "basic",
+        "type": "BasicAuth",
         "username": "systemx",
         "password": "use-a-secure-password"
  }
@@ -76,14 +74,14 @@ The following diagram shows the system context for communication with an IdP.
 ```json
 {
     "applicationId": "application1",
-    "eventName": "cloud.operational.train-arrived-at-station.v1",
+    "eventName": "cloud.open.operational.train-arrived-at-station.v1",
     "url": "https://test.no/test",
     "apiKey": {
         "header": "Ocp-Apim-Subscription-Key",
         "key": "jnfdi923r8fnaszy12orf98032nrcn7u982"
  },
     "authentication": {
-        "type": "maskinporten",
+        "type": "Maskinporten",
         "scopes": [ "company:apix:write" ]
  }
 }
@@ -129,14 +127,14 @@ Entra Id also uses the [JWT Grant mechanisms](https://datatracker.ietf.org/doc/h
 ```json
 {
     "applicationId": "application1",
-    "eventName": "cloud.operational.train-arrived-at-station.v1",
+    "eventName": "cloud.open.operational.train-arrived-at-station.v1",
     "url": "https://test.no/test",
     "apiKey": {
         "header": "Ocp-Apim-Subscription-Key",
         "key": "jnfdi923r8fnaszy12orf98032nrcn7u982"
  },
     "authentication": {
-        "type": "entraid",
+        "type": "EntraId",
         "url": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
         "clientId": "d0a3da30-8936-4800-9c23-37c1b86d8a63",
         "clientSecret": "7hzQ3bPSNThb7Cgem+a+w2RqLMKr*LqCSALYco-zQyi4ueUnVo",
