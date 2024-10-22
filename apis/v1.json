@@ -2,23 +2,24 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Event Issuer",
+    "contact": {
+      "name": "Integration Team",
+      "email": "integrasjonsteamet@banenor.no"
+    },
     "version": "1.0.0",
-    "license": {
-      "name": "BaneNOR",
-      "url": "https://banenor.no"
-    }
+    "description": "Api for Event-Issuer Service\n"
   },
   "servers": [
     {
-      "url": "https://api.banenor.no/event-issuer",
+      "url": "https://event-issuer-api.apps-int.banenor.no",
       "description": "Production instance for Bane NOR, this will have the alpha, beta and the latest released version available."
     },
     {
-      "url": "https://dev.api.apps.banenor.no/event-issuer",
+      "url": "https://event-issuer-api.review.apps-int.banenor.no",
       "description": "Internal development instance"
     },
     {
-      "url": "https://test.api.apps.banenor.no/event-issuer",
+      "url": "https://event-issuer-api.staging.apps-int.banenor.no",
       "description": "Internal test instance"
     }
   ],
@@ -191,7 +192,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "Ok"
           },
           "400": {
@@ -460,7 +461,7 @@
         }
       }
     },
-    "/health": {
+    "/healthz": {
       "get": {
         "summary": "Retrieves the health of event issuer",
         "operationId": "getStatusHealth",

@@ -6,11 +6,11 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Event Issuer" name="description"/>
-<link href="../getting-started/" rel="prev"/>
-<link href="../subscriptions/" rel="next"/>
+<link href="../../terminology/" rel="prev"/>
+<link href="../tenants/" rel="next"/>
 <link href="../../img/baneNOR-favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.19" name="generator"/>
-<title>Tenants - Event Issuer</title>
+<title>Getting Started - Event Issuer</title>
 <link href="../../assets/stylesheets/main.66ac8b77.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -33,7 +33,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#tenants">
+<a class="md-skip" href="#getting-access">
           Skip to content
         </a>
 </div>
@@ -57,7 +57,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Tenants
+              Getting Started
             
           </span>
 </div>
@@ -152,16 +152,138 @@
             User Guides
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../getting-started/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Getting Started
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Getting Started
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#getting-access">
+<span class="md-ellipsis">
+      Getting access
+    </span>
+</a>
+<nav aria-label="Getting access" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onboarding">
+<span class="md-ellipsis">
+      Onboarding
+    </span>
+</a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get-api-access">
+<span class="md-ellipsis">
+      Get API Access
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#using-event-issuer">
+<span class="md-ellipsis">
+      Using Event Issuer
+    </span>
+</a>
+<nav aria-label="Using Event Issuer" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#starting-your-first-subscription">
+<span class="md-ellipsis">
+      Starting your first subscription
+    </span>
+</a>
+<nav aria-label="Starting your first subscription" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example-bruno-request">
+<span class="md-ellipsis">
+      Example Bruno Request
+    </span>
+</a>
+<nav aria-label="Example Bruno Request" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header">
+<span class="md-ellipsis">
+      Header
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#body">
+<span class="md-ellipsis">
+      Body
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#producing-your-first-message">
+<span class="md-ellipsis">
+      Producing your first message
+    </span>
+</a>
+<nav aria-label="Producing your first message" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example-bruno-request_1">
+<span class="md-ellipsis">
+      Example Bruno Request
+    </span>
+</a>
+<nav aria-label="Example Bruno Request" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header_1">
+<span class="md-ellipsis">
+      Header
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#body_1">
+<span class="md-ellipsis">
+      Body
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../tenants/">
 <span class="md-ellipsis">
     Tenants
   </span>
@@ -238,19 +360,191 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#getting-access">
+<span class="md-ellipsis">
+      Getting access
+    </span>
+</a>
+<nav aria-label="Getting access" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#onboarding">
+<span class="md-ellipsis">
+      Onboarding
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#get-api-access">
+<span class="md-ellipsis">
+      Get API Access
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#using-event-issuer">
+<span class="md-ellipsis">
+      Using Event Issuer
+    </span>
+</a>
+<nav aria-label="Using Event Issuer" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#starting-your-first-subscription">
+<span class="md-ellipsis">
+      Starting your first subscription
+    </span>
+</a>
+<nav aria-label="Starting your first subscription" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example-bruno-request">
+<span class="md-ellipsis">
+      Example Bruno Request
+    </span>
+</a>
+<nav aria-label="Example Bruno Request" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header">
+<span class="md-ellipsis">
+      Header
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#body">
+<span class="md-ellipsis">
+      Body
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#producing-your-first-message">
+<span class="md-ellipsis">
+      Producing your first message
+    </span>
+</a>
+<nav aria-label="Producing your first message" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#example-bruno-request_1">
+<span class="md-ellipsis">
+      Example Bruno Request
+    </span>
+</a>
+<nav aria-label="Example Bruno Request" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#header_1">
+<span class="md-ellipsis">
+      Header
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#body_1">
+<span class="md-ellipsis">
+      Body
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<div class="admonition warning under construction">
-<p class="admonition-title">Warning</p>
-<p>The following section is under construction</p>
+<h1>Getting Started</h1>
+<p>The guide contains a quick introduction to how one can get access to and start using the Event Issuer service in Bane NOR.</p>
+<div class="toc">
+<ul>
+<li><a href="#getting-access">Getting access</a><ul>
+<li><a href="#onboarding">Onboarding</a></li>
+<li><a href="#get-api-access">Get API Access</a></li>
+</ul>
+</li>
+<li><a href="#using-event-issuer">Using Event Issuer</a><ul>
+<li><a href="#starting-your-first-subscription">Starting your first subscription</a><ul>
+<li><a href="#example-bruno-request">Example Bruno Request</a><ul>
+<li><a href="#header">Header</a></li>
+<li><a href="#body">Body</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#producing-your-first-message">Producing your first message</a><ul>
+<li><a href="#example-bruno-request_1">Example Bruno Request</a><ul>
+<li><a href="#header_1">Header</a></li>
+<li><a href="#body_1">Body</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
-<h1 id="tenants">Tenants<a class="headerlink" href="#tenants" title="Permanent link">¶</a></h1>
-<p>Event Issuer uses the concept of Tenants to provide a multi-tenancy architecture around the solution. This gives Bane NOR better control over the resource usage.</p>
-<p>Tenants can at the moment only be created by Bane NOR.</p>
+<h2 id="getting-access">Getting access<a class="headerlink" href="#getting-access" title="Permanent link">¶</a></h2>
+<h3 id="onboarding">Onboarding<a class="headerlink" href="#onboarding" title="Permanent link">¶</a></h3>
+<p>The first step in getting access to the event-issuer service is an onboarding meeting with the integration platform. Here the goal is to map out the thought-out use case/cases for your team and why the Event Issuer would be a relevant solution. To start this onboarding process, please contact the integration team on our e-mail: integrasjonsteamet@banenor.no</p>
+<p>If you are already onboarded and have been allowed to use the Event Issuer Service, the first step below (Get API Access) can be ignored.</p>
+<h3 id="get-api-access">Get API Access<a class="headerlink" href="#get-api-access" title="Permanent link">¶</a></h3>
+<p>After permission has been given to use the Event Issuer service, the next step is to get API access to the event-issuer API which is available through the integration team API Management (APIM) instance. For the integration team to be able to provide you with API keys you first have to <strong>at least once</strong> log into the APIM developer portal relevant to the environment you want to use the Event Issuer in. Here is a list showcasing the possible environments:</p>
+<ul>
+<li>For the staging environment: <a href="https://test.api-portal.apps.banenor.no">APIM Portal Staging</a></li>
+<li>For the production environment: <a href="https://api-portal.banenor.no/">APIM Portal Production</a></li>
+</ul>
+<p>The staging environment can be used to consume data from dev topics. The reason for this is that our dev instance will not necessarily be stable for public use and as such we will serve both dev and staging with the staging event issuer for those that need to work with their own development.</p>
+<p>Once logged in to the developer portal for the first time, you will be visible with your e-mail address and the integration team will be able to provide you with subscription keys.</p>
+<h2 id="using-event-issuer">Using Event Issuer<a class="headerlink" href="#using-event-issuer" title="Permanent link">¶</a></h2>
+<p>As mentioned in the getting access chapter of this document, the Event Issuer is available through an API present in each environment instance of APIM meaning that all available endpoints and their descriptions can be seen there. The API documentation is also available on GitHub using Redocly rendering which can be easier to read. The document can be seen here: <a href="https://bane-nor.github.io/event-issuer/apis/v1/">GitHub version of API</a></p>
+<p>This means that if you prefer, you can simply test sending API requests using for example <a href="https://www.usebruno.com/">Bruno</a> based on the API documentation. Otherwise, here is a showcase of some Bruno requests that can help you get started with links to relevant repositories.</p>
+<h3 id="starting-your-first-subscription">Starting your first subscription<a class="headerlink" href="#starting-your-first-subscription" title="Permanent link">¶</a></h3>
+<p>Once your user has gotten access to the event-issuer API, and a tenant for your organization has been created with the correct access policies, you can create your first subscription. To create a subscription, you must use the <strong>Create Subscription</strong> method towards the event-issuers subscription Endpoint. The API definition for this can be seen on the available API found in our GitHub documentation here: <a href="https://bane-nor.github.io/event-issuer/apis/v1/redoc-ebfe90c5.html#tag/Subscriptions/operation/createSubscription">Create Subscription Method</a></p>
+<h4 id="example-bruno-request">Example Bruno Request<a class="headerlink" href="#example-bruno-request" title="Permanent link">¶</a></h4>
+<p>An example request for this method can be found in our <a href="https://github.com/Bane-NOR/event-issuer?tab=readme-ov-file">event issuer repository</a> in our bruno folder or seen in the figure below using the <a href="https://www.usebruno.com/">Bruno</a> API client:</p>
+<h5 id="header">Header<a class="headerlink" href="#header" title="Permanent link">¶</a></h5>
+<p>The only required header per writing is the API key for the event-issuer API found on your account in the developer portal
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../../img/getting-started/Create-Subscription-Bruno-header.png"><img alt="image.png" src="../../img/getting-started/Create-Subscription-Bruno-header.png"/></a></p>
+<h5 id="body">Body<a class="headerlink" href="#body" title="Permanent link">¶</a></h5>
+<p>The content of the request are just for examples. For more concrete information on all subscription body options. Check out the <a href="/docs/user-guides/subscriptions.md">subscriptions page</a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../../img/getting-started/Create-Subscription-Bruno-body.png"><img alt="image.png" src="../../img/getting-started/Create-Subscription-Bruno-body.png"/></a></p>
+<h3 id="producing-your-first-message">Producing your first message<a class="headerlink" href="#producing-your-first-message" title="Permanent link">¶</a></h3>
+<p>Once your user has gotten access to the event-issuer API, and a tenant for your organization has been created with the correct access policies, you can produce your first message towards the Bane NOR Event Backbone which as per writing is Confluent Kafka. To produce a message, you must use either the <strong>Produce Cloud Event</strong> method or <strong>Produce batch of Cloud Events</strong>  method found under the produce endpoint. The API definition for this can be seen on the available API found in our GitHub documentation here: <a href="https://bane-nor.github.io/event-issuer/apis/v1/redoc-ebfe90c5.html#tag/Produce/operation/produce">Produce Cloud Event Method</a></p>
+<h4 id="example-bruno-request_1">Example Bruno Request<a class="headerlink" href="#example-bruno-request_1" title="Permanent link">¶</a></h4>
+<p>An example request for this method can be found in our <a href="https://github.com/Bane-NOR/event-issuer?tab=readme-ov-file">event issuer repository</a> in the bruno folder or seen in the figure below using the <a href="https://www.usebruno.com/">Bruno</a> API client:</p>
+<h5 id="header_1">Header<a class="headerlink" href="#header_1" title="Permanent link">¶</a></h5>
+<p>The only required header per writing is the API key for the event-issuer API found on your account in the developer portal
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../../img/getting-started/Produce-Event-Bruno-header.png"><img alt="image.png" src="../../img/getting-started/Produce-Event-Bruno-header.png"/></a></p>
+<h5 id="body_1">Body<a class="headerlink" href="#body_1" title="Permanent link">¶</a></h5>
+<p>The content of the request are just for examples
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="auto" href="../../img/getting-started/Produce-Event-Bruno-body.png"><img alt="image.png" src="../../img/getting-started/Produce-Event-Bruno-body.png"/></a></p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
