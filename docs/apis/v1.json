@@ -6,7 +6,8 @@
       "name": "Integration Team",
       "email": "integrasjonsteamet@banenor.no"
     },
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "description": "Api for Event-Issuer Service\n"
   },
   "servers": [
     {

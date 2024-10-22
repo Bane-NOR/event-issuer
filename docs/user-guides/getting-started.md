@@ -5,9 +5,9 @@ The guide contains a quick introduction to how one can get access to and start u
 ## Getting access
 
 ### Onboarding
-The first step in getting access to the event-issuer service is an onboarding meeting with the integration platform. Here the goal is to map out the thought-out use case/cases for your team and why the Event Issuer would be a relevant solution. To start this onboarding process, please use our onboarding form found on the front page of our wiki which is linked here: [Integration platform front page](https://dev.azure.com/bn-apps/Integration%20platform/_wiki/wikis/Integration-platform.wiki/1692/Integration-platform)
+The first step in getting access to the event-issuer service is an onboarding meeting with the integration platform. Here the goal is to map out the thought-out use case/cases for your team and why the Event Issuer would be a relevant solution. To start this onboarding process, please contact the integration team on our e-mail: integrasjonsteamet@banenor.no
 
-If you are already onboarded and have been allowed to use the Event Issuer Service, the first step can be ignored.
+If you are already onboarded and have been allowed to use the Event Issuer Service, the first step below (Get API Access) can be ignored.
 
 ### Get API Access
 After permission has been given to use the Event Issuer service, the next step is to get API access to the event-issuer API which is available through the integration team API Management (APIM) instance. For the integration team to be able to provide you with API keys you first have to **at least once** log into the APIM developer portal relevant to the environment you want to use the Event Issuer in. Here is a list showcasing the possible environments:
