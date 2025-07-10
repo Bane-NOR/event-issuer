@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "event-issuer"
-version = "0.1.0"
+version = "0.2.0"
 description = "Documentation for the Event Issuer service"
-authors = ["Idar Bergli <idar.bergli@banenor.no>"]
+authors = ["BaneNOR Integration team <integrasjonsteamet@banenor.no>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
