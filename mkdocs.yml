@@ -1,6 +1,9 @@
 site_name: Event Issuer
 site_description: Event Issuer
 
+nav:
+  - Introduction: index.md
+
 theme:
   name: material
   logo: img/baneNOR-logo.svg
